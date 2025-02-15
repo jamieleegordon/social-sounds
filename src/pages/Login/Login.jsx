@@ -8,6 +8,8 @@ export const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    //const { user } = useAuth(); // Get user from AuthContext
+
     const navigate = useNavigate()
 
     const gotoHomePage = () => {
@@ -38,6 +40,7 @@ export const LoginPage = () => {
     const signInWithGoogle = async() => {
         try {
             await signInWithPopup(auth, googleProvider)
+            gotoHomePage()
         } catch (err) {
             console.error(err)
         }
