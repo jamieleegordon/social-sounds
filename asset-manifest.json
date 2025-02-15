@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/social-sounds/static/css/main.dc4d6ff2.css",
-    "main.js": "/social-sounds/static/js/main.9667100e.js",
+    "main.js": "/social-sounds/static/js/main.46270dbc.js",
     "index.html": "/social-sounds/index.html",
     "main.dc4d6ff2.css.map": "/social-sounds/static/css/main.dc4d6ff2.css.map",
-    "main.9667100e.js.map": "/social-sounds/static/js/main.9667100e.js.map"
+    "main.46270dbc.js.map": "/social-sounds/static/js/main.46270dbc.js.map"
   },
   "entrypoints": [
     "static/css/main.dc4d6ff2.css",
-    "static/js/main.9667100e.js"
+    "static/js/main.46270dbc.js"
   ]
 }
