@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { auth, googleProvider } from '../../config/firebase'
 import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { checkUserExists } from '../../hooks/checkUserExists'
 
 export const LoginPage = () => {
 
@@ -35,14 +36,21 @@ export const LoginPage = () => {
           }
     }
 
-    const signInWithGoogle = async() => {
-        try {
-            await signInWithPopup(auth, googleProvider)
-            gotoHomePage()
-        } catch (err) {
-            console.error(err)
+    const signInWithGoogle = async () => {
+            try {
+                await signInWithPopup(auth, googleProvider)
+                const userExists = await checkUserExists(auth?.currentUser?.email);
+                
+                if (userExists) {
+                    gotoHomePage()
+                } else {
+                    navigate("/create-username")
+                }
+                
+            } catch (err) {
+                console.error(err)
+            }
         }
-    }
 
     // const logout = async() => {
     //     try {

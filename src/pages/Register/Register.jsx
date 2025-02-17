@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { auth, googleProvider } from '../../config/firebase'
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import { addNewUser } from '../../hooks/newUser'
+import { checkUserExists } from '../../hooks/checkUserExists'
 
 export const RegisterPage = () => {
 
@@ -8,20 +11,32 @@ export const RegisterPage = () => {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
 
+    const navigate = useNavigate()
+
     // console.log(auth?.currentUser?.photoURL)
 
-    const registerUser = async() => {
+    const registerUser = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password)
-            // add to database with email, username, friendslist
+
+            addNewUser(email, username)
+            navigate("/home") 
         } catch (err) {
+            console.log("user already exists with this email") // display in html
             console.error(err)
         }
     }
 
-    const signInWithGoogle = async() => {
+    const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider)
+            const userExists = await checkUserExists(auth?.currentUser?.email);
+            
+            if (userExists) {
+                navigate("/home")
+            } else {
+                navigate("/create-username")
+            }
         } catch (err) {
             console.error(err)
         }
