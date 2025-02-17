@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export const HomePage = () => {
     const { user, logout } = useAuth();
-    const currentUserEmail = user?.email; // Store the user's email in a variable
+    const currentUserEmail = user?.email; 
 
     const navigate = useNavigate()
     

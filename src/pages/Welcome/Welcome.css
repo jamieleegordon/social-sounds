@@ -1,0 +1,94 @@
+@import '../../../src/globalStyles.css';
+
+.Welcome-page {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+}
+
+.Welcome-page-header {
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+    border-bottom: 1px solid white;
+}
+
+.Welcome-page-header img {
+    height: 70px;
+    width: auto;
+}
+
+.Logo-container {
+    background-color: var(--background-colour);
+    border-radius: 25px;
+    padding: 20px;
+    /* border: 2px solid white; */
+    margin-bottom: 80px;
+}
+
+.Logo-container h1 {
+   color: white;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 50px;
+}
+
+.buttons-container button {
+    padding: 15px;
+    border-radius: 15px;
+    border-style: none;
+    font-size: 20px;
+    background-color: var(--item-colour);
+    cursor: pointer;
+}
+
+.buttons-container button:hover {
+    background-color: var(--item-hover-colour);
+}
+
+img {
+    width: 600px;
+    height: auto;
+}
+
+h1 {
+    text-align: center;    
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+    .Welcome-page-header img {
+        height: 50px;
+        width: auto;
+    }
+
+    .Logo-container {
+        padding: 10px;
+    }
+    
+    .Logo-container h1 {
+       color: white;
+       font-size: 18px;
+    }
+    
+    .buttons-container button {
+        font-size: 15px;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    img {
+        width: 300px;
+        height: auto;
+    }
+}

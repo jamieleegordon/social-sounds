@@ -8,8 +8,6 @@ export const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    //const { user } = useAuth(); // Get user from AuthContext
-
     const navigate = useNavigate()
 
     const gotoHomePage = () => {
@@ -46,13 +44,13 @@ export const LoginPage = () => {
         }
     }
 
-    const logout = async() => {
-        try {
-            await signOut(auth)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    // const logout = async() => {
+    //     try {
+    //         await signOut(auth)
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
     return (
         <div>
@@ -71,7 +69,7 @@ export const LoginPage = () => {
 
             <button onClick={signInWithGoogle}>Sign in with Google</button>
 
-            <button onClick={logout}>Logout</button>
+            
         </div>
     )
 }

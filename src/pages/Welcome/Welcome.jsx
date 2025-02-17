@@ -1,4 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import logo from '../../media/ss-logo-background.png'
+import smallLogo from '../../media/ss-logo-small.png'
+import './Welcome.css'
 
 export const WelcomePage = () => {
 
@@ -7,26 +10,39 @@ export const WelcomePage = () => {
     const goToLoginPage = () => {
         navigate("/login")
     }
+
     const goToRegisterPage = () => {
         navigate("/register")
     }
 
     return (
-        <div>
-            <h1>Welcome to Social Sounds</h1>
+        <>
+        <header className="Welcome-page-header">
+            <img src = {smallLogo} alt = "Logo"/>
+        </header>
+        <div className = "Welcome-page">
+            <div className="Logo-container">
+                <img src = {logo} alt = "Logo"/>
+                <h1>Social network for music enthusiasts</h1>
+                
+                <div className="buttons-container">
+                    <button
+                        onClick={goToLoginPage}
+                        id = "Login-btn"
+                    >
+                        Login
+                    </button>
+                    <button 
+                        onClick={goToRegisterPage}
+                        id = "SignUp-btn"
+                    >
+                        Sign Up
+                    </button>
+                </div>
+                
+            </div>
             
-            <button 
-                onClick={goToLoginPage}
-                id = "Login-btn"
-            >
-                Login
-            </button>
-            <button 
-                onClick={goToRegisterPage}
-                id = "SignUp-btn"
-            >
-                Sign Up
-            </button>
         </div>
+        </>
     )
 }

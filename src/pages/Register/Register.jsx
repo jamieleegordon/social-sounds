@@ -6,12 +6,14 @@ export const RegisterPage = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
 
     // console.log(auth?.currentUser?.photoURL)
 
     const registerUser = async() => {
         try {
             await createUserWithEmailAndPassword(auth, email, password)
+            // add to database with email, username, friendslist
         } catch (err) {
             console.error(err)
         }
@@ -25,13 +27,13 @@ export const RegisterPage = () => {
         }
     }
 
-    const logout = async() => {
-        try {
-            await signOut(auth)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    // const logout = async() => {
+    //     try {
+    //         await signOut(auth)
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
     return (
         <div>
@@ -39,6 +41,10 @@ export const RegisterPage = () => {
             <input 
                 placeholder="Email..."
                 onChange={(e) => setEmail(e.target.value)}
+            />
+            <input 
+                placeholder="Username..."
+                onChange={(e) => setUsername(e.target.value)}
             />
             <input
                 type='password' 
@@ -50,7 +56,7 @@ export const RegisterPage = () => {
 
             <button onClick={signInWithGoogle}>Sign in with Google</button>
 
-            <button onClick={logout}>Logout</button>
+            
         </div>
     )
 }
