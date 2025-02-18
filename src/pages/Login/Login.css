@@ -1,0 +1,179 @@
+@import '../../../src/globalStyles.css';
+
+.Login-page {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+}
+
+.Login-page-header {
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+    border-bottom: 1px solid white;
+}
+
+.Login-page-header img {
+    height: 70px;
+    width: auto;
+}
+
+.Login-form {
+    border: 1px solid white;
+    border-radius: 25px;
+    padding: 50px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Login-form h1 {
+    color: white;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.Login-form img {
+    width: 350px;
+    height: auto;
+}
+
+.Error-message {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: red;
+}
+
+.Login-input {
+    border-radius: 15px;
+    padding: 10px;
+    border-style: none;
+    min-width: 300px;
+}
+
+.Login-form button {
+    border-radius: 15px;
+    border-style: none;
+    font-size: 15px;
+    cursor: pointer;
+    color: black;
+}
+
+.Login-button {
+    background-color: var(--item-colour);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.Login-button:hover {
+    background-color: var(--item-hover-colour);
+}
+
+.Login-button-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4285F4; 
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 250px; 
+    outline: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.google-button-content {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    color: white;
+}
+
+.google-icon {
+    font-size: 20px; 
+    color: white;
+}
+
+.Login-button-google:hover {
+    background-color: #85aff1; 
+    transform: translateY(-2px); 
+}
+
+.Login-button-google:active {
+    background-color: #2c6bb2; 
+    transform: translateY(1px); 
+}
+
+.Login-button-google:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+}
+
+.Already-have-an-account-button {
+    color: #85aff1;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: -15px;
+    margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+    .Login-page-header img {
+        height: 50px;
+        width: auto;
+    }
+
+    .Login-form {
+        padding: 20px;
+    }
+
+    .Login-form img {
+        width: 250px;
+    }
+
+    .Login-form h1 {
+        font-size: 24px;
+    }
+
+    .Login-input {
+        border-radius: 15px;
+        padding: 10px;
+        border-style: none;
+        min-width: 200px;
+    }
+
+    .Login-form button {
+        border-radius: 15px;
+        border-style: none;
+        font-size: 13px;
+        cursor: pointer;
+        color: black;
+    }
+
+    .Login-button-google {
+        padding: 8px 15px;
+    }
+
+    .Error-message {
+        text-align: center;
+        max-width: 200px;
+        font-size: 15px;
+    }
+
+    .Already-have-an-account-button {
+        margin-bottom: 5px;
+    }
+}

@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { auth, googleProvider } from '../../config/firebase'
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { checkUserExists } from '../../hooks/checkUserExists'
+import smallLogo from '../../media/ss-logo-small.png'
+import logo from '../../media/ss-logo-background.png'
+import './Login.css'
+import { Google } from '@mui/icons-material'
 
 export const LoginPage = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const [incorrect, setIncorrect] = useState(false)
 
     const navigate = useNavigate()
 
@@ -15,16 +21,22 @@ export const LoginPage = () => {
         navigate("/home")
     }
 
-    // console.log(auth?.currentUser?.photoURL)
+    const goToRegisterPage = () => {
+        navigate("/register")
+    }
 
-    const signIn = async() => {
+    const signIn = async(e) => {
+        e.preventDefault()
+
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user; 
             console.log('User logged in:', user);
+            setIncorrect(false)
             gotoHomePage()
           } catch (error) {
             // This will catch any errors, including incorrect email/password
+            setIncorrect(true)
             console.error('Error logging in:', error.message);
         
             // Handling specific errors
@@ -50,34 +62,69 @@ export const LoginPage = () => {
             } catch (err) {
                 console.error(err)
             }
-        }
-
-    // const logout = async() => {
-    //     try {
-    //         await signOut(auth)
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
+    }
 
     return (
-        <div>
-            <h1>Login Page</h1>
-            <input 
-                placeholder="Email..."
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type='password' 
-                placeholder="Password..." 
-                onChange={(e) => setPassword(e.target.value)}
-            />
+        <>
+            <header className="Login-page-header">
+                <img src = {smallLogo} alt = "Logo"/>
+            </header>
 
-            <button onClick={signIn}>Login</button>
+            <div className='Login-page'>    
+                <form className='Login-form' onSubmit={signIn}>
+                    <img src = {logo} alt = "logo" />
+                    <h1>Log In</h1>
 
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
+                    <input 
+                        required
+                        className='Login-input'
+                        placeholder="Email..."
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        required
+                        className='Login-input'
+                        type='password' 
+                        placeholder="Password..." 
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-            
-        </div>
+                    {incorrect && (
+                        <p className='Error-message'>
+                            Incorrect email or password, please try again :(
+                        </p>
+                    )}
+
+                    <button
+                        type='submit'
+                        className='Login-button'
+                    >
+                        Login
+                    </button>
+                    <button 
+                        className='Login-button-google'
+                        onClick={signInWithGoogle}
+                    >
+                        <span className="google-button-content">
+                            <Google className="google-icon" />
+                            Sign in with Google
+                        </span>
+                    </button>
+
+                    <p 
+                        className='Already-have-an-account-button'
+                        onClick={goToRegisterPage}
+                    >
+                        Already have an account?
+                    </p>
+                    
+                    
+
+                </form>
+               
+                
+            </div>
+        </>
     )
 }
+

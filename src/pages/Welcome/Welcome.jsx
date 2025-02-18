@@ -23,7 +23,7 @@ export const WelcomePage = () => {
         <div className = "Welcome-page">
             <div className="Logo-container">
                 <img src = {logo} alt = "Logo"/>
-                <h1>Social network for music enthusiasts</h1>
+                <h1 id = "slogan" >Social network for music enthusiasts</h1>
                 
                 <div className="buttons-container">
                     <button
