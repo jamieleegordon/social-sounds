@@ -3,17 +3,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAdY7h2CoCsPV-LUTFPW122-cQdqO7UG4M",
-//   authDomain: "social-sounds-bad41.firebaseapp.com",
-//   projectId: "social-sounds-bad41",
-//   storageBucket: "social-sounds-bad41.firebasestorage.app",
-//   messagingSenderId: "671380750595",
-//   appId: "1:671380750595:web:ee4ffa042c1c02303a2936",
-//   measurementId: "G-WYDK8EP2JS"
-// };
-
-
+// Firebase Config info 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
