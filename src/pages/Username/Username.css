@@ -1,0 +1,87 @@
+@import '../../../src/globalStyles.css';
+
+.Username-page-header {
+    padding: 10px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+    border-bottom: 1px solid white;
+}
+
+.Username-page-header img {
+    height: 70px;
+    width: auto;
+}
+
+.Username-page {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+}
+
+.Username-form {
+    border: 1px solid white;
+    border-radius: 25px;
+    padding: 50px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.Username-input {
+    border-radius: 15px;
+    padding: 10px;
+    border-style: none;
+    min-width: 300px;
+}
+
+.Username-form h2 {
+    color: white;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.Username-button {
+    background-color: var(--item-colour);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 15px;
+}
+
+.Username-button:hover {
+    background-color: var(--item-hover-colour);
+}
+
+@media (max-width: 767px) {
+    .Username-page-header img {
+        height: 50px;
+        width: auto;
+    }
+
+    .Username-page {
+        align-items: flex-start; 
+        margin: 0 auto; 
+    }
+
+    .Username-input {
+        width: 250px;
+        min-width: 50px;
+    }
+
+    .Username-form {
+        max-width: 300px;
+        padding: 20px;
+        margin-top: 100px;
+    }
+    
+    .Username-form h2 {
+        font-size: 18px;
+    }
+}

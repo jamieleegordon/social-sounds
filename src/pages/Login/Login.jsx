@@ -112,17 +112,12 @@ export const LoginPage = () => {
                     </button>
 
                     <p 
-                        className='Already-have-an-account-button'
+                        className='Dont-have-an-account-button'
                         onClick={goToRegisterPage}
                     >
-                        Already have an account?
+                        Don't have an account?
                     </p>
-                    
-                    
-
                 </form>
-               
-                
             </div>
         </>
     )
