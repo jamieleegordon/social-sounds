@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/social-sounds/static/css/main.2fa3050e.css",
-    "main.js": "/social-sounds/static/js/main.a77af298.js",
+    "main.css": "/social-sounds/static/css/main.5e99f57e.css",
+    "main.js": "/social-sounds/static/js/main.8a61aad0.js",
     "static/media/ss-logo-background.png": "/social-sounds/static/media/ss-logo-background.3580144abe614155c35f.png",
     "index.html": "/social-sounds/index.html",
-    "main.2fa3050e.css.map": "/social-sounds/static/css/main.2fa3050e.css.map",
-    "main.a77af298.js.map": "/social-sounds/static/js/main.a77af298.js.map"
+    "main.5e99f57e.css.map": "/social-sounds/static/css/main.5e99f57e.css.map",
+    "main.8a61aad0.js.map": "/social-sounds/static/js/main.8a61aad0.js.map"
   },
   "entrypoints": [
-    "static/css/main.2fa3050e.css",
-    "static/js/main.a77af298.js"
+    "static/css/main.5e99f57e.css",
+    "static/js/main.8a61aad0.js"
   ]
 }
