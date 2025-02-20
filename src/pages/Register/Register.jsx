@@ -123,7 +123,7 @@ export const RegisterPage = () => {
                         required
                         className='Register-input'
                         type='password' 
-                        placeholder="Password..." 
+                        placeholder="Re-enter password..." 
                         onChange={(e) => setReEnteredPassword(e.target.value)}
                     />                    
 

@@ -53,6 +53,7 @@
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 15px;
+    border-style: none;
 }
 
 .Username-button:hover {

@@ -1,0 +1,21 @@
+@import '../../../src/globalStyles.css';
+
+.Home-page {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: var(--background-colour);
+}
+
+.Home-page h1 {
+    color: white;
+}
+
+.Home-page p {
+    color: white;
+}
+
+@media (max-width: 767px) {
+    
+}

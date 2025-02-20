@@ -17,32 +17,31 @@ export const WelcomePage = () => {
 
     return (
         <>
-        <header className="Welcome-page-header">
-            <img src = {smallLogo} alt = "Logo"/>
-        </header>
-        <div className = "Welcome-page">
-            <div className="Logo-container">
-                <img src = {logo} alt = "Logo"/>
-                <h1 id = "slogan" >Social network for music enthusiasts</h1>
-                
-                <div className="buttons-container">
-                    <button
-                        onClick={goToLoginPage}
-                        id = "Login-btn"
-                    >
-                        Login
-                    </button>
-                    <button 
-                        onClick={goToRegisterPage}
-                        id = "SignUp-btn"
-                    >
-                        Sign Up
-                    </button>
+            <header className="Welcome-page-header">
+                <img src = {smallLogo} alt = "Logo"/>
+            </header>
+
+            <div className = "Welcome-page">
+                <div className="Logo-container">
+                    <img src = {logo} alt = "Logo"/>
+                    <h1 id = "slogan" >Social network for music enthusiasts</h1>
+                    
+                    <div className="buttons-container">
+                        <button
+                            onClick={goToLoginPage}
+                            id = "Login-btn"
+                        >
+                            Login
+                        </button>
+                        <button 
+                            onClick={goToRegisterPage}
+                            id = "SignUp-btn"
+                        >
+                            Sign Up
+                        </button>
+                    </div>
                 </div>
-                
             </div>
-            
-        </div>
         </>
     )
 }
