@@ -5,6 +5,7 @@ import './Search.css';
 import { useEffect, useState } from "react";
 import { getAccessToken, getAlbumsByArtistId, searchArtistById } from "../../api/SearchArtist";
 import { getTracksFromAlbum } from "../../api/GetAlbumTracks";
+import { selectRandomArtist } from "../../helper/artists";
 
 export const SearchPage = () => {
     
@@ -17,31 +18,34 @@ export const SearchPage = () => {
 
     const [albumTracks, setAlbumTracks] = useState({}); 
 
+    const randomArtist = selectRandomArtist()
+
     useEffect(() => {
-        // Fetch the access token when the component mounts
         getAccessToken(CLIENT_ID, CLIENT_SECRET)
-            .then(token => setAccessToken(token))
+        .then(token => {
+            setAccessToken(token);
+            setSearchArtistInput(randomArtist); 
+            searchArtist(randomArtist, token); 
+        })
             .catch(error => {
                 console.error('Error fetching access token:', error);
                 alert('There was an error fetching the access token. Please try again.');
             });
     }, []);
 
-    const searchArtist = async () => {
-        console.log("Searching for " + searchArtistInput);
-        
+    const searchArtist = async (query = searchArtistInput, token = accessToken) => {
+        if (!query) return; // Prevent empty searches
+        console.log("Searching for " + query);
+    
         try {
-            // Get the artist ID
-            const artistID = await searchArtistById(accessToken, searchArtistInput);
+            const artistID = await searchArtistById(token, query);
             console.log("Artist ID is " + artistID);
-
-            // Fetch albums for the artist
-            const artistAlbums = await getAlbumsByArtistId(accessToken, artistID);
+    
+            const artistAlbums = await getAlbumsByArtistId(token, artistID);
             setAlbums(artistAlbums);
-
-            // Fetch tracks for each album
+    
             artistAlbums.forEach(async (album) => {
-                const tracks = await getTracksFromAlbum(accessToken, album.id);
+                const tracks = await getTracksFromAlbum(token, album.id);
                 setAlbumTracks(prevTracks => ({
                     ...prevTracks,
                     [album.id]: tracks,
@@ -51,6 +55,7 @@ export const SearchPage = () => {
             console.error("Error fetching artist data:", error);
         }
     };
+    
 
     return (
         <>  
