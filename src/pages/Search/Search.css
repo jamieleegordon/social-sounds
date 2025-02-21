@@ -1,0 +1,22 @@
+@import '../../../src/globalStyles.css';
+
+.Search-page {
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    background-color: var(--background-colour);
+    padding-top: 20px; 
+    color: white;
+}
+
+/* Apply Bootstrap only inside SearchPage */
+.search-page-wrapper {
+    all: unset; /* Resets inherited styles */
+}
+
+/* Reset Bootstrap styles affecting NavBar */
+.search-page-wrapper .NavBar {
+    all: unset; /* Resets all inherited styles */
+}
+

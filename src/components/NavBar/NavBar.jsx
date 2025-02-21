@@ -3,14 +3,24 @@ import { AccountBox, AutoGraph, Chat, Group, Home, LibraryMusic, MenuSharp, Play
 import smallLogo from '../../media/ss-logo-small.png'
 import './NavBar.css'
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const navigate = useNavigate()
 
     // Toggle menu visibility on mobile
     const toggleMenu = () => {
         setMenuOpen(prev => !prev);
     };
+
+    const gotoHomePage = () => {
+        navigate("/home")
+    }
+    const gotoSearchPage = () => {
+        navigate("/search")
+    }
 
     return (
         <>
@@ -19,12 +29,12 @@ export const NavBar = () => {
                 <nav className="Desktop-Nav-bar">
                     <ul className="Nav-bar">
                         <li>
-                            <IconButton>
+                            <IconButton onClick={gotoHomePage}>
                                 <Home className="Nav-bar-icon" />
                             </IconButton>
                         </li>
                         <li>
-                            <IconButton>
+                            <IconButton onClick={gotoSearchPage}>
                                 <Search className="Nav-bar-icon" />
                             </IconButton>
                         </li>
@@ -91,12 +101,12 @@ export const NavBar = () => {
                         </IconButton>
                         <ul>
                             <li>
-                                <IconButton>
+                                <IconButton onClick={gotoHomePage}>
                                     <Home className="Nav-bar-icon" />
                                 </IconButton>
                             </li>
                             <li>
-                                <IconButton>
+                                <IconButton onClick={gotoSearchPage}>
                                     <Search className="Nav-bar-icon" />
                                 </IconButton>
                             </li>
