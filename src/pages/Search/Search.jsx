@@ -1,6 +1,6 @@
 import { NavBar } from "../../components/NavBar/NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import './Search.css';
 import { useEffect, useState } from "react";
 import { getAccessToken, getAlbumsByArtistId, searchArtistById } from "../../api/SearchArtist";
@@ -103,6 +103,7 @@ export const SearchPage = () => {
                                 />
                                 <div>
                                     <h1 className="Album-card-title">{album.name}</h1>
+                                    <p className="Album-card-info">{album.release_date.substring(0, 4)} · {album.artists[0].name}</p>
 
                                     {/* Album link */}
                                     {/* <a href={album.external_urls.spotify} target="_blank" rel="noopener noreferrer">
