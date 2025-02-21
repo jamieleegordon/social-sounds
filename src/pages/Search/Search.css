@@ -1,22 +1,121 @@
 @import '../../../src/globalStyles.css';
 
 .Search-page {
-    height: 100vh; 
+    min-height: 100vh;
+    height: fit-content; 
     display: flex;
-    justify-content: center; 
-    align-items: flex-start; 
+    flex-direction: column;  
+    justify-content: flex-start; 
+    align-items: center; 
     background-color: var(--background-colour);
     padding-top: 20px; 
     color: white;
+    width: 100%;
+    gap: 20px; 
+    padding-bottom: 50px;
 }
 
-/* Apply Bootstrap only inside SearchPage */
-.search-page-wrapper {
-    all: unset; /* Resets inherited styles */
+.Filter-button {
+    border-radius: 25px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(21, 21, 26);
+    border-color: #222;
 }
 
-/* Reset Bootstrap styles affecting NavBar */
-.search-page-wrapper .NavBar {
-    all: unset; /* Resets all inherited styles */
+.Artists-button:hover {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #222;
 }
+
+.Albums-button:hover {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #222;
+}
+
+.Artist-album-buttons-container {
+    display: flex; 
+    gap: 10px; 
+}
+
+.Artists-button {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #222;
+}
+
+.Search-artist-input {
+    max-width: 500px;  
+    width: 100%; 
+}
+
+.Search-artist-input .form-control {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    color: rgb(134, 134, 134);
+    border-color: white;
+}
+
+.Search-artist-input .form-control::placeholder {
+    color: rgb(134, 134, 134);  
+}
+
+.Search-artist-input .btn {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    border-color: white;
+    color: white;
+}
+
+.Album-list {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(100px, 1fr)); 
+    gap: 15px; 
+    padding: 0 20px; 
+    width: 90%;
+    box-sizing: border-box; 
+}
+
+.Album-card {
+    background-color: #222; 
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.Album-card:hover {
+    transform: scale(1.05); 
+}
+
+.Album-card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc; 
+}
+
+.Album-card-title {
+    padding: 5px; 
+    font-size: 0.9rem; 
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .Album-list {
+        grid-template-columns: repeat(2, minmax(100px, 1fr)); 
+    }
+
+    .Search-artist-input { 
+        width: 90%; 
+    }
+}
+
+
+
+
+
+
 
