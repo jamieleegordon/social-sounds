@@ -76,7 +76,9 @@ export const ReviewPage = () => {
 
                             <a href={albumLink} target="_blank" rel="noopener noreferrer">
                                 <Tooltip title="Play on Spotify" arrow>
-                                    <PlayCircle className="PlayCircle" />
+                                    <IconButton className="PlayCircle">
+                                        <PlayCircle fontSize="inherit"/>
+                                    </IconButton>
                                 </Tooltip>
                             </a>
                         </div>

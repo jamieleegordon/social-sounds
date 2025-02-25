@@ -64,7 +64,18 @@
 
 .PlayCircle {
     color: var(--item-colour);
-    font-size: 60px;
+    font-size: 60px !important;  
+    margin-left: -15px;
+}
+
+.IconButton.PlayCircle {
+    width: 80px !important;  
+    height: 80px !important;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    border-radius: 50%;  
+    padding: 0;  
 }
 
 #Artist-name {
