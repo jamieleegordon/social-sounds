@@ -1,0 +1,148 @@
+@import '../../../src/globalStyles.css';
+
+.ReviewPage {
+    min-height: 100vh;
+    height: fit-content; 
+    display: flex;
+    flex-direction: column;  
+    justify-content: flex-start;  
+    align-items: flex-start;  
+    background-color: var(--background-colour);
+    color: white;
+    width: 100%;
+    gap: 20px; 
+    padding-bottom: 50px;
+    padding-left: 100px; 
+    padding-right: 100px; 
+}
+
+.Top-section {
+    background: linear-gradient(to bottom, #0213a7, #000524);
+    width: calc(100% + 200px); 
+    padding-left: 100px; 
+    padding-right: 100px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: black;
+    box-sizing: border-box; 
+    margin-left: -100px; 
+    margin-right: -100px; 
+}
+
+.Top-section .Back-button {
+    margin-top: 30px;
+    color: white;
+    margin-bottom: 15px;
+    align-self: flex-start; 
+    margin-left: 0; 
+}
+
+.Album-info-container {
+    display: flex;
+    flex-direction: row;
+    gap: 50px; 
+    align-items: flex-start;  
+    margin-bottom: 30px;
+}
+
+#Album-image {
+    width: 300px;
+    height: auto;
+}
+
+.Album-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  
+}
+
+.Album-info h3 {
+    font-size: 15px;
+    margin: 0;  
+}
+
+.PlayCircle {
+    color: var(--item-colour);
+    font-size: 60px;
+}
+
+#Artist-name {
+    margin-top: 10px;
+}
+
+.ReviewPage h1, p {
+    margin: 5px 0;  
+}
+
+.ReviewPage h1 {
+    font-size: 60px;
+}
+
+.ReviewPage a {
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.ReviewPage ol {
+    padding-left: 0;
+    counter-reset: track-counter;
+}
+
+.ReviewPage li {
+    list-style-type: none;
+    margin: 5px 0;
+    display: flex;
+    align-items: flex-start;  
+}
+
+.ReviewPage .Track {
+    display: flex;
+    justify-content: flex-start; 
+    width: 100%;
+    gap: 10px;  
+}
+
+.ReviewPage .Track:hover {
+    background-color: #0213a7;
+    padding-left: 15px;
+    border-radius: 15px;
+}
+
+.ReviewPage .Track-number {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.ReviewPage .Track-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2px; 
+}
+
+.ReviewPage .Track-name {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.ReviewPage .Artist-name {
+    font-size: 14px;
+    font-weight: normal;
+    color: grey;
+}
+
+.ReviewPage li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+}
+
+.Bottom-section h1 {
+    font-size: 30px;
+}
+

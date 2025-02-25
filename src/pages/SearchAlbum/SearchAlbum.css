@@ -1,6 +1,6 @@
 @import '../../../src/globalStyles.css';
 
-.Search-page {
+.Search-page-two {
     min-height: 100vh;
     height: fit-content; 
     display: flex;
@@ -24,13 +24,13 @@
     border-color: #222;
 }
 
-.Artists-button:hover {
+.Artists-button-two:hover {
     background-color: #ccc;
     border-color: #ccc;
     color: #222;
 }
 
-.Albums-button:hover {
+.Albums-button-two:hover {
     background-color: #ccc;
     border-color: #ccc;
     color: #222;
@@ -41,7 +41,7 @@
     gap: 10px; 
 }
 
-.Search-page .Artists-button {
+.Search-page-two .Albums-button-two {
     background-color: #ccc;
     border-color: #ccc;
     color: #222;

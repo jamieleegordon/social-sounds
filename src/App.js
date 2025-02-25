@@ -6,6 +6,8 @@ import { RegisterPage } from './pages/Register/Register';
 import { HomePage } from './pages/Home/Home';
 import { UsernamePage } from './pages/Username/Username';
 import { SearchPage } from './pages/Search/Search';
+import { SearchAlbumPage } from './pages/SearchAlbum/SearchAlbum';
+import { ReviewPage } from './pages/Review/Review';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path = "/home" element = {<HomePage />}/>
           <Route path = "/create-username" element = {<UsernamePage />}/>
           <Route path = "/search" element = {<SearchPage />}/>
+          <Route path = "/search-album" element = {<SearchAlbumPage />}/>
+          <Route path = "/album/:albumName" element = {<ReviewPage />}/>
         </Routes>
       </Router>
     </div>
