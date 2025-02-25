@@ -76,11 +76,29 @@ export const ReviewPage = () => {
 
                             <a href={albumLink} target="_blank" rel="noopener noreferrer">
                                 <Tooltip title="Play on Spotify" arrow>
-                                    <IconButton className="PlayCircle">
-                                        <PlayCircle fontSize="inherit"/>
+                                    <IconButton
+                                        className="PlayCircle"
+                                        sx={{
+                                            width: 80, 
+                                            height: 80, 
+                                            display: 'flex', 
+                                            justifyContent: 'center', 
+                                            alignItems: 'center', 
+                                            borderRadius: '50%',
+                                            padding: 0
+                                        }}
+                                    >
+                                        <PlayCircle
+                                            sx={{
+                                                color: '#F70B2C', 
+                                                fontSize: '60px',
+                                                marginLeft: '-15px'
+                                            }}
+                                        />
                                     </IconButton>
                                 </Tooltip>
                             </a>
+
                         </div>
                     </div>
                 </div>
