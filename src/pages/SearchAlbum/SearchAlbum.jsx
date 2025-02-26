@@ -59,7 +59,8 @@ export const SearchAlbumPage = () => {
                 albumDate: album.release_date,
                 albumImage: album.images?.[0]?.url || 'default-image-url',
                 accessToken, 
-                albumID: album.id 
+                albumID: album.id,
+                artistID: album.artists?.[0]?.id || 'Unknown Artist ID'
             }
         });
     };

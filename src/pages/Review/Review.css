@@ -70,7 +70,7 @@
     margin: 5px 0;  
 }
 
-.ReviewPage h1 {
+#Album-name {
     font-size: 60px;
 }
 
@@ -137,7 +137,122 @@
     width: 100%;
 }
 
-.Bottom-section h1 {
+.Header-titles h1{
     font-size: 30px;
 }
+
+.Bottom-section {
+    width: 100%;
+}
+
+.More-albums-wrapper {
+    width: 100%;
+    max-width: fit-content;
+}
+
+.More-albums-container {
+    display: flex; 
+    flex-direction: row; 
+    overflow-x: auto; 
+    gap: 15px; 
+    width: 100%;
+    box-sizing: border-box; 
+    white-space: nowrap; 
+    scrollbar-width: thin;  
+    scrollbar-color: #555 #222; 
+}
+
+.More-albums-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.More-albums-container::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.More-albums-container::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.More-albums-grid {
+    display: flex;
+    flex-wrap: nowrap; 
+    gap: 15px; 
+}
+
+.More-albums-container .Album-card {
+    flex: 0 0 auto; 
+    width: 150px; 
+    background-color: #222; 
+    border-radius: 10px;
+    overflow: hidden; 
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    height: auto; 
+}
+
+.More-albums-container .Album-card:hover {
+    transform: scale(1.05); 
+}
+
+.More-albums-container .Album-card img {
+    width: 100%; 
+    height: auto; 
+    border-bottom: 1px solid #ccc; 
+}
+
+.More-albums-container .Album-card p {
+    padding: 5px; 
+    font-size: 0.9rem; 
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+.More-albums-container .Album-card .Album-card-title {
+    font-size: 1rem; 
+    font-weight: bold;
+    color: white;
+    text-align: center; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    margin: 0 5px 5px; 
+    padding: 0 5px; 
+    white-space: normal; 
+}
+
+@media (max-width: 767px) {
+    .ReviewPage {
+        padding-left: 30px; 
+        padding-right: 30px; 
+    }
+
+    .Album-info-container {
+        flex-direction: column;
+        margin-bottom: 0px;
+    }
+
+    #Album-name {
+        font-size: 30px;
+    }
+
+    .ReviewPage .Track-name {
+        font-size: 15px;
+        font-weight: normal;
+    }
+    .ReviewPage .Track-number {
+        font-size: 15px;
+    }
+
+    .More-albums-container .Album-card { 
+        width: 100px; 
+    }
+}
+
+
 
