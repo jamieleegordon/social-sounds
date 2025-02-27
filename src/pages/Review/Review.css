@@ -146,6 +146,7 @@
 }
 
 .More-albums-wrapper {
+    margin-top: 20px;
     width: 100%;
     max-width: fit-content;
 }
@@ -226,10 +227,36 @@
     white-space: normal; 
 }
 
+.Radar-Pie-Chart-section, .Area-Line-Graph-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Average-rating h1 {
+    border: 10px solid var(--item-colour);
+    border-radius: 50%;
+    max-width: fit-content;
+    padding: 10px;
+}
+
+.Average-rating {
+    display: flex;
+    justify-content: center;
+}
+
+.Review-area-chart, .Review-line-bar, .Review-radar-chart, .Review-pie-chart {
+    width: 50%;
+}
+
 @media (max-width: 767px) {
     .ReviewPage {
         padding-left: 30px; 
         padding-right: 30px; 
+    }
+
+    #Album-image {
+        width: 250px;
     }
 
     .Album-info-container {
@@ -251,6 +278,14 @@
 
     .More-albums-container .Album-card { 
         width: 100px; 
+    }
+
+    .Radar-Pie-Chart-section, .Area-Line-Graph-section {
+        flex-direction: column;
+    }
+
+    .Review-area-chart, .Review-line-bar, .Review-radar-chart, .Review-pie-chart{
+        width: 100%;
     }
 }
 

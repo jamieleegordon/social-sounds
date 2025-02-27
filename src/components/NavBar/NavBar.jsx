@@ -21,6 +21,9 @@ export const NavBar = () => {
     const gotoSearchPage = () => {
         navigate("/search")
     }
+    const gotoProfilePage = () => {
+        navigate("/profile")
+    }
 
     return (
         <>
@@ -73,7 +76,7 @@ export const NavBar = () => {
                         </li> 
                         <li>
                             <IconButton>
-                                <AccountBox className="Nav-bar-icon" />
+                                <AccountBox className="Nav-bar-icon" onClick={gotoProfilePage}/>
                             </IconButton>
                         </li>     
                     </ul>
@@ -136,7 +139,7 @@ export const NavBar = () => {
                                 </IconButton></li> 
                             <li>
                                 <IconButton>
-                                    <AccountBox className="Nav-bar-icon" />
+                                    <AccountBox className="Nav-bar-icon" onClick={gotoProfilePage}/>
                                 </IconButton>
                             </li>  
                         </ul>

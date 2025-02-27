@@ -7,6 +7,12 @@ import { ArrowBackIos, PlayCircle } from '@mui/icons-material';
 import { formatDate } from '../../helper/formatDate';
 import { IconButton, Tooltip } from '@mui/material';
 import { getAlbumsByArtistId } from '../../api/SearchArtist';
+import { ReviewsBarChart } from '../../components/ReviewDataVis/ReviewsBarChart';
+import { ReviewsRadarChart } from '../../components/ReviewDataVis/ReviewsRadarChart';
+import { ReviewsPieChart } from '../../components/ReviewDataVis/ReviewsPieChart';
+import { ReviewAreaChart } from '../../components/ReviewDataVis/ReviewsAreaChart';
+import { ReviewLineBar } from '../../components/ReviewDataVis/ReviewLineBar';
+import { ReviewForm } from '../../components/ReviewForm/ReviewForm';
 
 export const ReviewPage = () => {
     const location = useLocation(); 
@@ -170,10 +176,43 @@ export const ReviewPage = () => {
                 )}
 
                 <div className='Bottom-section'>
-                    <div className='Reviews-container'>
-                        <h1 className='Header-titles'>Reviews</h1>
-                        {/* BAR CHARTTTTTTTTTTTTTT of each rating 1-5 */}
+
+                    <h1 className='Header-titles'>Rate and review</h1>
+                    <ReviewForm />
+                    
+                    <h1 className='Header-titles'>Reviews for {albumName}</h1>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+
+                    <h1 className='Header-titles'>Ratings for {albumName}</h1>
+                    
+                    <div className='Average-rating'>
+                        <h1>7.6</h1>
                     </div>
+
+                    <div className='Ratings-container'>
+                        <ReviewsBarChart />
+
+                        <div className='Area-Line-Graph-section'>
+                            <ReviewAreaChart /> 
+
+                            <ReviewLineBar />
+                        </div>
+
+                        <div className='Radar-Pie-Chart-section'>
+                            <ReviewsRadarChart />
+
+                            <ReviewsPieChart />   
+                        </div>
+                        
+                    </div>
+
+                    <h1 className='Header-titles'>{albumName} Stats and Breakdown</h1>
 
                     <h1 className='Header-titles'>More from {artistName}</h1>
                     <div className="More-albums-wrapper">

@@ -1,0 +1,204 @@
+@import '../../../src/globalStyles.css';
+
+.ProfilePage {
+    height: 100vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+
+.ProfilePage-top-section {
+    background: linear-gradient(to bottom, #0213a7, #000524);
+    width: calc(100% + 200px); 
+    padding-left: 100px; 
+    padding-right: 100px; 
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background-color: black;
+    box-sizing: border-box; 
+    margin-left: -100px; 
+    margin-right: -100px; 
+}
+
+.Profile-picture {
+    margin-top: 30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ec823b, var(--item-colour));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px; 
+    margin-bottom: 50px;
+}
+
+.Profile-picture-text {
+    color: white;
+    font-size: 90px;
+}
+
+.User-info {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+}
+
+.User-info .Profile-tag {
+    font-size: 15px;
+}
+
+.Username {
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+}
+
+.ProfilePage-top-section .Username {
+    color: white;
+}
+
+.ProfilePage-top-section .Profile-picture .Profile-picture-text {
+    color: white;
+}
+
+.Logout-button {
+    padding: 10px 30px 10px;
+    border-radius: 15px;
+    border-style: none;
+    font-size: 15px;
+    background-color: var(--item-colour);
+    cursor: pointer;
+    color: black;
+}
+
+.Logout-button:hover {
+    background-color: var(--item-hover-colour);
+}
+
+.Favourite-albums-section h1, 
+.Most-listened-to-artists-section h1, 
+.Most-listened-to-genres-section h1 {
+    color: white;
+}
+
+.ProfilePage .Search-album-input .form-control {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    color: rgb(134, 134, 134);
+    border-color: white;
+}
+
+.ProfilePage .Search-album-input .form-control::placeholder {
+    color: rgb(134, 134, 134);  
+}
+
+.ProfilePage .Search-album-input .btn {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    border-color: white;
+    color: white;
+}
+
+.Favourite-albums-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    gap: 15px; 
+}
+
+.Select-albums-container h4 {
+    color: white;
+    font-size: 15px;
+    text-align: center; 
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.Search-album-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.ProfilePage .Search-album-input {
+    width: 90%;
+}
+
+.Select-Album-list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+    gap: 15px;
+    padding: 0 20px;
+    width: 90%;
+    max-width: 600px;
+    box-sizing: border-box;
+    max-height: 500px;
+    overflow-y: auto;
+    justify-content: center; 
+    margin: 0 auto;
+}
+
+.Select-Album-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.Select-Album-list::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.Select-Album-list::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.Select-Album-card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;  
+    align-items: center; 
+    gap: 10px; 
+    padding: 10px; 
+}
+
+.Select-Album-card:hover {
+    transform: scale(1.05);
+}
+
+.Select-Album-card-image {
+    width: 100px;
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 5px;
+}
+
+.Select-Album-card-title {
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+}
+
+.Select-Album-card-info {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 5px 0 0 0;
+}
+
+.Select-Album-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -8,6 +8,7 @@ import { UsernamePage } from './pages/Username/Username';
 import { SearchPage } from './pages/Search/Search';
 import { SearchAlbumPage } from './pages/SearchAlbum/SearchAlbum';
 import { ReviewPage } from './pages/Review/Review';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path = "/search" element = {<SearchPage />}/>
           <Route path = "/search-album" element = {<SearchAlbumPage />}/>
           <Route path = "/album/:albumName" element = {<ReviewPage />}/>
+          <Route path = "/profile" element = {<ProfilePage />}/>
         </Routes>
       </Router>
     </div>
