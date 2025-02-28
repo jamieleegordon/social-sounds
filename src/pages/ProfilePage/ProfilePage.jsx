@@ -4,10 +4,11 @@ import { useAuth } from "../../context/AuthContext";
 import './ProfilePage.css'
 import { getUsername } from "../../hooks/getUsername";
 import { useNavigate } from "react-router-dom";
-import { checkAlreadyHasFavAlbums } from "../../hooks/addFavouriteAlbums";
+import { addFavAlbums, checkAlreadyHasFavAlbums } from "../../hooks/addFavouriteAlbums";
 import { getAccessToken } from "../../api/SearchArtist";
 import { searchAlbums } from "../../api/SearchAlbum";
 import { Button, FormControl, InputGroup } from "react-bootstrap";
+import { getFavAlbums } from "../../hooks/getFavAlbums";
 
 export const ProfilePage = () => {
 
@@ -24,6 +25,9 @@ export const ProfilePage = () => {
     const [albums, setAlbums] = useState([]);
     const [selectedAlbumIds, setSelectedAlbumsIds] = useState([])
     const [selectedAlbumNames, setSelectedAlbumNames] = useState([])
+    const [selectedThreeAlbums, setSelectedThreeAlbums] = useState(false)
+
+    const [favAlbums, setFavAlbums] = useState([])
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -53,6 +57,22 @@ export const ProfilePage = () => {
             console.error("Error fetching album data:", error);
         }
     };
+
+    const collectFavAlbums = async (query = searchAlbumInput, token = accessToken) => {
+        if (!query || !token) return []; 
+        
+        console.log("Searching for album: " + query);
+        
+        try {
+            // Fetch the album data using the searchAlbums function
+            const albumResults = await searchAlbums(query, token);
+            return albumResults; // Return the list of albums found
+        } catch (error) {
+            console.error("Error fetching album data:", error);
+            return [];  
+        }
+    };
+    
     
     useEffect(() => {
         const fetchUsername = async () => {
@@ -67,16 +87,46 @@ export const ProfilePage = () => {
 
     useEffect(() => {
         const checkFavAlbums = async () => {
-          if (username) {
-            const hasFavAlbums = await checkAlreadyHasFavAlbums(username);
-            setAlreadyHasFavAlbums(hasFavAlbums);
-          }
+            if (username) {
+                const hasFavAlbums = await checkAlreadyHasFavAlbums(username);
+                setAlreadyHasFavAlbums(hasFavAlbums);
+    
+                if (hasFavAlbums) {
+                    const albumNames = await getFavAlbums(username);  // Assuming this returns an array of album names
+    
+                    // Search for each album using the album names and set them in `favAlbums`
+                    const albumObjects = [];
+                    
+                    for (const albumName of albumNames) {
+                        try {
+                            const albumResults = await collectFavAlbums(albumName, accessToken);
+                            if (albumResults.length > 0) {
+                                albumObjects.push(albumResults[0]); // Push the first album object found
+                            }
+                        } catch (error) {
+                            console.error("Error fetching album data for:", albumName, error);
+                        }
+                    }
+    
+                    // Set the fetched album objects to the state
+                    setFavAlbums(albumObjects);
+                }
+            }
         };
     
         checkFavAlbums();
-    }, [username]); 
+    }, [username, accessToken]);
+    
 
     const handleAlbumSelection = (albumID, albumName) => {
+        if (selectedAlbumIds.length >= 2 || selectedAlbumNames.length >= 2) {
+            setSelectedThreeAlbums(true)
+        }
+        
+        if (selectedAlbumIds.includes(albumID) || selectedAlbumNames.includes(albumName)) {
+            return;  
+        }
+
         if (selectedAlbumIds.length >= 3) {
             console.log("You can only select up to 3 albums.");
             return;
@@ -101,6 +151,46 @@ export const ProfilePage = () => {
         });
     };
     
+    const removeAlbum = (albumName) => {
+        setSelectedThreeAlbums(false)
+        const indexToRemove = selectedAlbumNames.indexOf(albumName);
+    
+        if (indexToRemove === -1) { 
+            return
+        }  
+    
+        setSelectedAlbumNames(prevNames => prevNames.filter((_, index) => index !== indexToRemove));
+        setSelectedAlbumsIds(prevIds => prevIds.filter((_, index) => index !== indexToRemove));
+    };
+
+    const postAlbums = async () => {
+        setAlreadyHasFavAlbums(true)
+
+        try {
+            await addFavAlbums(username, selectedAlbumNames)
+
+            const albumNames = await getFavAlbums(username);  // Assuming this returns an array of album names
+    
+            // Search for each album using the album names and set them in `favAlbums`
+            const albumObjects = [];
+                    
+            for (const albumName of albumNames) {
+                try {
+                    const albumResults = await collectFavAlbums(albumName, accessToken);
+                    if (albumResults.length > 0) {
+                        albumObjects.push(albumResults[0]); // Push the first album object found
+                    }
+                } catch (error) {
+                        console.error("Error fetching album data for:", albumName, error);
+                    }
+                }
+                // Set the fetched album objects to the state
+                setFavAlbums(albumObjects);
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
     return (
         <>
             <NavBar />
@@ -120,10 +210,25 @@ export const ProfilePage = () => {
                 </div>
 
                 <div className="Favourite-albums-section">
-                    <h1>Favourite Albums</h1>
-
+                    <h1 className="Section-titles">Favourite Albums</h1>
                     {alreadyHasFavAlbums ? (
-                        <div><p>These are your fav albums</p></div>
+                        <div className="Fav-albums-list" >
+                            {favAlbums.map((album, index) => (
+                                <div key={index} className="Fav-Album-card" >
+                                    <img
+                                        className="Fav-Album-card-image"
+                                        src={album.images?.[0]?.url || 'default-image-url'}
+                                        alt={album.name}
+                                    />
+                                    <div>
+                                        <h1 className="Fav-Album-card-title">{album.name}</h1>
+                                        <p className="Fav-Album-card-info">
+                                            {album.release_date?.substring(0, 4)} · {album.artists?.[0]?.name || 'Unknown Artist'}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     ) : (
                         <div className="Select-albums-container">
                           <h4>You haven't yet chosen your fav albums! please select from below: </h4>  
@@ -147,13 +252,32 @@ export const ProfilePage = () => {
                             </div>
 
                             {selectedAlbumNames.length > 0 && (
-                                <div>
-                                   <p>Current chosen albums: </p>
-                                    <ul>
-                                        {selectedAlbumNames.map((albumId, index) => (
-                                            <li key={index}>{albumId}</li>
+                                <div className="Chosen-albums">
+                                   <p>Currently chosen albums: </p>
+                                    <ul className="Chosen-albums-list">
+                                        {selectedAlbumNames.map((albumName, index) => (
+                                            <li 
+                                                className="Chosen-album"
+                                                key={index}
+                                            >
+                                                {albumName}
+                                                <button 
+                                                    className="Remove-album-button"
+                                                    onClick={() => removeAlbum(albumName)}
+                                                >
+                                                    X
+                                                </button>
+                                            </li>
                                         ))}
                                     </ul> 
+                                        {selectedThreeAlbums && (
+                                            <button
+                                                className="Post-albums-button"
+                                                onClick={postAlbums}
+                                            >
+                                                Post
+                                            </button>
+                                        )}
                                 </div>
                             )}            
                             
@@ -177,13 +301,17 @@ export const ProfilePage = () => {
                         </div>
                     )}
                 </div>
+
+                <div className="Recent-reviews-section">
+                    <h1 className="Section-titles">Recent Reviews</h1>
+                </div>
                 
                 <div className="Most-listened-to-artists-section">
-                    <h1>Most listened to artists</h1>
+                    <h1 className="Section-titles">Most listened to artists</h1>
                 </div>
 
                 <div className="Most-listened-to-genres-section">
-                    <h1>Most listened to genres</h1>
+                    <h1 className="Section-titles">Most listened to genres</h1>
                 </div>
 
                 <button 
@@ -193,3 +321,4 @@ export const ProfilePage = () => {
         </>
     )
 }
+

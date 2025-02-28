@@ -1,4 +1,4 @@
-import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { addDoc, collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase"
 
 export const defaultFavAlbums = async (username) => {
@@ -35,4 +35,35 @@ export const checkAlreadyHasFavAlbums = async (username) => {
         return false; 
     }
 }
+
+export const addFavAlbums = async (username, albumNames) => {
+    const favAlbumsCollectionRef = collection(db, "favouriteAlbums");
+
+    try {
+        const q = query(favAlbumsCollectionRef, where("username", "==", username));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            console.error(`No document found for username: ${username}`);
+            return;
+        }
+
+        const userDoc = querySnapshot.docs[0]; 
+        const userDocRef = userDoc.ref;
+
+        const currentAlbums = userDoc.data().albums || [];
+
+        const updatedAlbums = [...currentAlbums, ...albumNames];
+
+        await updateDoc(userDocRef, {
+            albums: updatedAlbums
+        });
+
+        console.log(`Successfully updated albums for ${username}`);
+
+    } catch (err) {
+        console.error("Error updating albums:", err);
+    }
+};
+
 

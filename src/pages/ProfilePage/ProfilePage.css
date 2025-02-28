@@ -86,7 +86,8 @@
 
 .Favourite-albums-section h1, 
 .Most-listened-to-artists-section h1, 
-.Most-listened-to-genres-section h1 {
+.Most-listened-to-genres-section h1,
+.Recent-reviews-section h1 {
     color: white;
 }
 
@@ -106,15 +107,6 @@
     background-color: rgb(21, 21, 26);
     border-color: white;
     color: white;
-}
-
-.Favourite-albums-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-    gap: 15px; 
 }
 
 .Select-albums-container h4 {
@@ -201,4 +193,163 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.Chosen-albums {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;  
+    background-color: #222;
+    margin-bottom: 15px;
+    border-radius: 15px;
+}
+
+.Chosen-albums-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.Remove-album-button {
+    margin-left: 15px;
+    border-radius: 15px;
+    padding: 3px 10px 3px;
+    border-style: none;
+    color: white;
+    background-color: var(--item-colour);
+}
+
+.Chosen-album {
+    margin-top: 5px;
+}
+
+.Post-albums-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 3px 15px 3px;
+    color: white;
+    background-color: #0d6efd;
+}
+
+.Favourite-albums-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    gap: 15px; 
+    margin-bottom: 20px;
+}
+
+.Fav-albums-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 15px; 
+    padding: 0 20px; 
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.Fav-Album-card {
+    background-color: #222; 
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 250px;
+    height: auto;
+}
+
+.Fav-Album-card-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc; 
+}
+
+.Fav-Album-card-title {
+    padding: 5px; 
+    font-size: 0.9rem; 
+    color: white;
+}
+
+.Fav-Album-card-info {
+    padding: 5px; 
+    font-size: 12px;
+    color: #ccc;
+}
+
+@media (max-width: 767px) {
+    .ProfilePage {
+        padding-bottom: 50px;
+    }
+    
+    .ProfilePage-top-section {
+        width: calc(100% + 200px); 
+        padding-left: 50px; 
+        padding-right: 100px; 
+    }
+    
+    .Profile-picture {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 50px;
+    }
+    
+    .Profile-picture-text {
+        color: white;
+        font-size: 50px;
+    }
+
+    .User-info .Profile-tag {
+        font-size: 15px;
+    }
+    
+    .Username {
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .Section-titles {
+        font-size: 20px;
+    }
+
+    .Favourite-albums-section {
+        width: 100vw;
+    }
+
+    .Fav-albums-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start; 
+        gap: 10px; 
+        width: 100%; 
+        box-sizing: border-box;
+        margin: 0 auto; 
+    }
+
+    .Fav-Album-card {
+        background-color: #222; 
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        width: calc(33.33% - 10px);
+        height: auto;
+    }
+
+    .Fav-Album-card-title {
+        font-size: 12px;
+    }
+
+    .Fav-Album-card-info {
+        font-size: 10px;
+    }
 }
