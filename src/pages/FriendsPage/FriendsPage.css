@@ -1,0 +1,176 @@
+@import '../../../src/globalStyles.css';
+
+.FriendsPage {
+    height: 100vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+
+.FriendsPage-overlay {
+    background-color: var(--secondary-background-colour);
+    color: var(--text-colour);
+    margin: 50px 50px 50px;
+    width: 100%;
+    height: 75vh;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+}
+
+.Search-friend-input {
+    margin-top: 10px;
+}
+
+.Search-friend-input {
+    max-width: 500px;  
+    width: 100%; 
+}
+
+.Search-friend-input .form-control {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    color: rgb(134, 134, 134);
+    border-color: white;
+}
+
+.Search-friend-input .form-control::placeholder {
+    color: rgb(134, 134, 134);  
+}
+
+.Search-friend-input .btn {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    border-color: white;
+    color: white;
+}
+
+.Friends-column {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-right: 1px solid white;
+    overflow: hidden;
+}
+
+.Friends-list-top-section {
+    padding: 15px 20px;
+    background-color: var(--secondary-background-colour);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.Friends-list-top-section h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.Select-chat {
+    width: 70%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Select-chat h1 {
+    font-size: 20px;
+}
+
+.Friend-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #1f1f1f;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.Friend-card:hover {
+    background-color: #272727;
+    transform: translateY(-2px);
+}
+
+.Friend-Profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ec823b, var(--item-colour));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Friend-card:hover .Friend-Profile-picture {
+    transform: scale(1.1);
+}
+
+.Friend-Profile-picture-text {
+    color: white;
+    margin: 0;
+    user-select: none;
+}
+
+.Friend-card h2 {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+    flex-grow: 1;
+    font-weight: 500;
+    padding-left: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Add a subtle divider between each friend for a cleaner list look */
+.Friend-card:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Optional - Add slight animation when selecting */
+.Friend-card:active {
+    transform: scale(0.98);
+}
+
+/* Overall container */
+.Friends-list h1 {
+    font-size: 24px;
+    color: white;
+}
+
+.Friends-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px 20px;
+    background-color: var(--secondary-background-colour);
+    margin-right: 20px;
+}
+
+.Friends-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.Friends-list::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.Friends-list::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}

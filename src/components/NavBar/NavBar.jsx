@@ -24,6 +24,9 @@ export const NavBar = () => {
     const gotoProfilePage = () => {
         navigate("/profile")
     }
+    const gotoFriendsPage = () => {
+        navigate('/friends')
+    }
 
     return (
         <>
@@ -47,7 +50,7 @@ export const NavBar = () => {
                             </IconButton>
                         </li>
                         <li>
-                            <IconButton>
+                            <IconButton onClick={gotoFriendsPage}>
                                 <Chat className="Nav-bar-icon" />
                             </IconButton>
                         </li> 
@@ -119,7 +122,7 @@ export const NavBar = () => {
                                 </IconButton>
                             </li>
                             <li>
-                                <IconButton>
+                                <IconButton onClick={gotoFriendsPage}>
                                     <Chat className="Nav-bar-icon" />
                                 </IconButton>
                             </li>

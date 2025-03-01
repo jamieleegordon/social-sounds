@@ -73,7 +73,6 @@ export const ProfilePage = () => {
         }
     };
     
-    
     useEffect(() => {
         const fetchUsername = async () => {
             if (currentUserEmail) {
@@ -117,7 +116,6 @@ export const ProfilePage = () => {
         checkFavAlbums();
     }, [username, accessToken]);
     
-
     const handleAlbumSelection = (albumID, albumName) => {
         if (selectedAlbumIds.length >= 2 || selectedAlbumNames.length >= 2) {
             setSelectedThreeAlbums(true)

@@ -9,6 +9,8 @@ import { SearchPage } from './pages/Search/Search';
 import { SearchAlbumPage } from './pages/SearchAlbum/SearchAlbum';
 import { ReviewPage } from './pages/Review/Review';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage';
+import { FriendsPage } from './pages/FriendsPage/FriendsPage';
+import { MessagingPage } from './pages/MessagingPage/MessagingPage';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path = "/search-album" element = {<SearchAlbumPage />}/>
           <Route path = "/album/:albumName" element = {<ReviewPage />}/>
           <Route path = "/profile" element = {<ProfilePage />}/>
+          <Route path = "/friends" element = {<FriendsPage />}/>
+          <Route path = "/friends/:friend" element = {<MessagingPage />}/>
         </Routes>
       </Router>
     </div>
