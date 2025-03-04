@@ -138,17 +138,14 @@
     white-space: nowrap;
 }
 
-/* Add a subtle divider between each friend for a cleaner list look */
 .Friend-card:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Optional - Add slight animation when selecting */
 .Friend-card:active {
     transform: scale(0.98);
 }
 
-/* Overall container */
 .Friends-list h1 {
     font-size: 24px;
     color: white;
@@ -173,4 +170,26 @@
 .Friends-list::-webkit-scrollbar-thumb {
     background: #555; 
     border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+    .FriendsPage {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 50px;
+    }
+
+    .FriendsPage-overlay {
+        margin: 50px 10px 10px;
+        width: 100%;
+    }
+
+    .Select-chat {
+        display: none;
+    }
+
+    .Friends-column {
+        width: 100%;
+        border-right: none;
+    }
 }

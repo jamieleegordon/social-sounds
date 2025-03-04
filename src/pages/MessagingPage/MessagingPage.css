@@ -1,0 +1,167 @@
+.MessagingPage {
+    height: 100vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+}
+
+.MessagingPage-overlay {
+    background-color: var(--secondary-background-colour);
+    color: var(--text-colour);
+    margin: 50px 50px 50px;
+    width: 100%;
+    height: 75vh;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.MessagingPage-top-section {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    position: relative;  
+    width: 100%;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.Back-button {
+    position: absolute; 
+    left: 20px; 
+    z-index: 10;
+}
+
+.MessagingPage-top-section h1 {
+    margin: 0;
+    flex-grow: 1;  
+    text-align: center;
+    padding-bottom: 10px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.MessagingPage-Friend-Profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ec823b, var(--item-colour));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.MessagingPage-Friend-Profile-picture-text {
+    color: white;
+    margin: 0;
+    font-size: 25px;
+    user-select: none;
+}
+
+.MessagesList {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column-reverse; 
+    padding: 10px;
+}
+
+.MessagesList::-webkit-scrollbar {
+    height: 8px;
+}
+
+.MessagesList::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.MessagesList::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.Message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 45%;
+    word-wrap: break-word;  
+    overflow-wrap: break-word; 
+    white-space: pre-wrap; 
+    color: black;
+}
+
+.Message-timestamp {
+    font-size: 0.8em;
+    color: #888;
+    text-align: right;
+    margin-top: 4px;
+}
+
+.sent {
+    color: white;
+    background-color:#0d6efd;
+    align-self: flex-end;
+}
+
+.sent .Message-timestamp {
+    color:#222;
+}
+
+.received {
+    background-color: #FFFFFF;
+    align-self: flex-start;
+}
+
+.MessagingPage-bottom-section {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.Send-message-input {
+    margin-top: 10px;
+    width: 100%; 
+}
+
+.Send-message-input .form-control {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    color: rgb(134, 134, 134);
+    border-color: white;
+}
+
+.Send-message-input .form-control::placeholder {
+    color: rgb(134, 134, 134);  
+}
+
+.Send-message-input .btn {
+    border-radius: 20px;  
+    background-color: rgb(21, 21, 26);
+    border-color: white;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .MessagingPage {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+    }
+    
+    .MessagingPage-overlay {
+        border-top:none ;
+        margin: 0px 0px 0px;
+        width: 100%;
+        height: 100vh;
+    }
+
+}
