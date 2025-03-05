@@ -6,11 +6,12 @@ import { getUsername } from "../../hooks/getUsername";
 import './MessagingPage.css';
 import { useMessages } from "../../hooks/getMessages";
 import { IconButton } from "@mui/material";
-import { ArrowBackIos } from "@mui/icons-material";
+import { ArrowBackIos, ContentCopy } from "@mui/icons-material";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { sendMessage } from "../../hooks/sendMessage";  
 import { censorBadWords } from "../../regex/checkBadWords";
+import useChatGptMessageSuggestion from "../../api/useChatGptMessageSuggestion";
 
 const MessageInput = ({ sendMessage, username, friendUsername }) => {
     const [messageInput, setMessageInput] = useState("");
@@ -59,9 +60,13 @@ export const MessagingPage = () => {
     const currentUserEmail = user?.email;
 
     const [username, setUsername] = useState("");
+    const [suggestedMessage, setSuggestedMessage] = useState("")
+
     const navigate = useNavigate();
 
     const messagesListRef = useRef(null);  
+
+    const { chatGptMessageSuggestion } = useChatGptMessageSuggestion()
 
     useEffect(() => {
         const fetchUsername = async () => {
@@ -90,6 +95,27 @@ export const MessagingPage = () => {
         }
     }, [memoizedMessages]);  // Trigger scroll every time messages change
 
+    const generateGptSuggestion = async () => {
+        // Extract last 5 message contents only 
+        const lastMessages = messages.slice(0, 5).map(msg => msg.message);
+        
+        // Combine into a single string with line breaks
+        const context = lastMessages.join("\n");
+    
+        console.log("Context being sent to GPT:", context);
+    
+        try {
+            const suggestion = await chatGptMessageSuggestion(context);
+            setSuggestedMessage(suggestion);  
+        } catch (err) {
+            console.error("Error getting GPT suggestion:", err);
+        }
+    };
+
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text)
+    }
+    
     return (
         <>
             <NavBar />
@@ -113,7 +139,6 @@ export const MessagingPage = () => {
                     {!username ? (
                         <p>Loading messages...</p>
                     ) : (
-                        // CHECK BAD WORDS
                         <div className="MessagesList" ref={messagesListRef}>
                             {memoizedMessages.map((message) => {
                                 const isSentByCurrentUser = message.sender === username;
@@ -139,7 +164,29 @@ export const MessagingPage = () => {
                     )}
 
                     <div className="MessagingPage-bottom-section">
-                        <MessageInput sendMessage={sendMessage} username={username} friendUsername={friendUsername} />
+                        <MessageInput 
+                            sendMessage={sendMessage} 
+                            username={username} 
+                            friendUsername={friendUsername} 
+                        />
+
+                        <button 
+                            onClick={() => generateGptSuggestion()}
+                            className="GPT-suggestion-button"
+                        >
+                            Generate AI suggested message
+                        </button>
+                        {suggestedMessage && (
+                            <div>
+                                <p className="Suggested-message">{suggestedMessage}</p>
+                                <IconButton
+                                    onClick={() => copyToClipboard(suggestedMessage)}
+                                    className="Copy-button"
+                                >
+                                    <ContentCopy sx = {{fontSize: "30px", color: "grey"}}/>
+                                </IconButton>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

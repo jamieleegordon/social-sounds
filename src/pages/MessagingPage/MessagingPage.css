@@ -150,6 +150,25 @@
     color: white;
 }
 
+.GPT-suggestion-button {
+    padding: 10px;
+    border-radius: 15px;
+    border-style: none;
+    font-size: 15px;
+    background-color: var(--item-colour);
+    cursor: pointer;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.GPT-suggestion-button:hover {
+    background-color: var(--item-hover-colour);
+}
+
+.Suggested-message {
+    color: white;
+}
+
 @media (max-width: 767px) {
     .MessagingPage {
         padding-left: 0px;
@@ -163,5 +182,4 @@
         width: 100%;
         height: 100vh;
     }
-
 }
