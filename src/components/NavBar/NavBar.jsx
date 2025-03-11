@@ -27,6 +27,9 @@ export const NavBar = () => {
     const gotoFriendsPage = () => {
         navigate('/friends')
     }
+    const gotoAIplaylistPage = () => {
+        navigate('/ai-playlist')
+    }
 
     return (
         <>
@@ -55,7 +58,6 @@ export const NavBar = () => {
                             </IconButton>
                         </li> 
 
-                        {/* Desktop Logo */}
                         <img 
                             className="Nav-bar-desktop-logo"
                             src={smallLogo} 
@@ -74,7 +76,7 @@ export const NavBar = () => {
                         </li> 
                         <li>
                             <IconButton>
-                                <PlaylistPlay className="Nav-bar-icon" />
+                                <PlaylistPlay className="Nav-bar-icon" onClick = {gotoAIplaylistPage}/>
                             </IconButton>
                         </li> 
                         <li>
@@ -138,7 +140,7 @@ export const NavBar = () => {
                             </li> 
                             <li>
                                 <IconButton>
-                                    <PlaylistPlay className="Nav-bar-icon" />
+                                    <PlaylistPlay className="Nav-bar-icon" onClick = {gotoAIplaylistPage}/>
                                 </IconButton></li> 
                             <li>
                                 <IconButton>

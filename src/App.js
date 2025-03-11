@@ -11,6 +11,8 @@ import { ReviewPage } from './pages/Review/Review';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 import { FriendsPage } from './pages/FriendsPage/FriendsPage';
 import { MessagingPage } from './pages/MessagingPage/MessagingPage';
+import { AIplaylist } from './pages/AIplaylist/AIplaylist';
+import { FriendProfile } from './pages/FriendProfile/FriendProfile';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path = "/profile" element = {<ProfilePage />}/>
           <Route path = "/friends" element = {<FriendsPage />}/>
           <Route path = "/friends/:friend" element = {<MessagingPage />}/>
+          <Route path = "/ai-playlist" element = {<AIplaylist />}/>
+          <Route path = "/friendProfile/:friend" element = {<FriendProfile />}/>
         </Routes>
       </Router>
     </div>

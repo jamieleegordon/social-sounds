@@ -1,0 +1,111 @@
+.AIplaylistPage {
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    color: white;
+}
+
+.AIplaylistPage-top-section {
+    margin-top: 20px;
+}
+
+.AIplaylistPage-mid-section {
+    width: 100%;
+    overflow-y: auto; 
+    padding-bottom: 20px; 
+    margin-bottom: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center;
+    padding-top: 20px; 
+    gap: 10px
+}
+
+.AIplaylistPage-mid-section::-webkit-scrollbar {
+    height: 8px;
+}
+
+.AIplaylistPage-mid-section::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.AIplaylistPage-mid-section::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.Playlist-promt-input {
+    width: 100%;
+}
+
+.Playlist-promt-input .form-control {
+    border-radius: 20px;
+    background-color: rgb(21, 21, 26);
+    color: rgb(134, 134, 134);
+    border-color: white;
+}
+
+.Playlist-promt-input .form-control::placeholder {
+    color: rgb(134, 134, 134);
+}
+
+.Playlist-promt-input .btn {
+    border-radius: 20px;
+    background-color: rgb(21, 21, 26);
+    border-color: white;
+    color: white;
+}
+
+.Playlist-card {
+    text-align: left;
+    background-color: rgb(21, 21, 26);
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+}
+
+.Some-suggestions-header {
+    font-size: 25px;
+}
+
+.Playlist-suggestions {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.Playlist-suggestion {
+    width: 200px;
+    background-color: rgb(21, 21, 26);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.Playlist-suggestion h2 {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.AIplaylistPage-bottom-section {
+    margin-bottom: 20px;
+    width: 100%;
+    position: relative; 
+}
+
+@media (max-width: 767px) {
+    .AIplaylistPage {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .Playlist-suggestion h2 {
+        margin-top: 5px;
+        font-size: 12px;
+    }
+}

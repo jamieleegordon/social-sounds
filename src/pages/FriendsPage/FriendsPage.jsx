@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './FriendsPage.css'
 import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { IconButton, Tooltip } from "@mui/material";
+import { Chat, Person } from "@mui/icons-material";
 
 export const FriendsPage = () => {
 
@@ -68,6 +70,14 @@ export const FriendsPage = () => {
         });
     };
 
+    const gotoFriendProfile = (friendUsername) => {
+        navigate(`/friendProfile/${friendUsername}`, {
+            state: {
+                friendUsername
+            }
+        });
+    }
+
     return (
         <>
             <NavBar />
@@ -78,7 +88,11 @@ export const FriendsPage = () => {
                         <div className="Friends-list-top-section">
                             <h1>Friends</h1>
 
-                            <InputGroup className="mb-3 Search-friend-input" size="lg" sx={{ marginTop: '100px', marginBottom: '20px' }}>
+                            <InputGroup className="mb-3 Search-friend-input" size="lg" sx={{ 
+                                marginTop: '100px', 
+                                marginBottom: '20px' 
+                                }}
+                            >
                                 <FormControl
                                     placeholder="Search For Friend"
                                     type="input"
@@ -98,11 +112,46 @@ export const FriendsPage = () => {
                                 <p>You don't have friends</p>
                             ) : (
                                 friends.map((friend, index) => (
-                                    <div key={index} className="Friend-card" onClick={() => handleFriendClick(friend)}>
+                                    <div key={index} className="Friend-card">
                                         <div className="Friend-Profile-picture">
                                             <h1 className="Friend-Profile-picture-text">{friend.charAt(0)}</h1>
                                         </div>
                                         <h2>{friend}</h2>
+                                        <Tooltip title="Chat" arrow>
+                                            <IconButton 
+                                                onClick={(event) => {
+                                                    event.stopPropagation(); 
+                                                    handleFriendClick(friend);
+                                                }}
+                                            >
+                                                <Chat sx = {{
+                                                    background: "grey", 
+                                                    borderRadius: "50%", 
+                                                    minWidth: "40px", 
+                                                    height: "auto", 
+                                                    padding: "3px"
+                                                    }}
+                                                />
+                                            </IconButton>
+                                        </Tooltip>
+                                        
+                                        <Tooltip title="View Profile" arrow>
+                                           <IconButton 
+                                                onClick={(event) => {
+                                                    event.stopPropagation(); 
+                                                    gotoFriendProfile(friend);
+                                                }}
+                                            >
+                                                <Person sx = {{
+                                                    background: "grey", 
+                                                    borderRadius: "50%", 
+                                                    minWidth: "40px", 
+                                                    height: "auto", 
+                                                    padding: "3px"
+                                                    }}
+                                                />
+                                            </IconButton> 
+                                        </Tooltip>
                                     </div>
                                 ))
                             )}
