@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { sendMessage } from "../../hooks/sendMessage";  
 import { censorBadWords } from "../../regex/checkBadWords";
-import useChatGptMessageSuggestion from "../../api/useChatGptMessageSuggestion";
 
 const MessageInput = ({ sendMessage, username, friendUsername }) => {
     const [messageInput, setMessageInput] = useState("");
@@ -66,8 +65,6 @@ export const MessagingPage = () => {
 
     const messagesListRef = useRef(null);  
 
-    const { chatGptMessageSuggestion } = useChatGptMessageSuggestion()
-
     useEffect(() => {
         const fetchUsername = async () => {
             if (currentUserEmail) {
@@ -88,30 +85,38 @@ export const MessagingPage = () => {
         navigate("/friends");
     };
 
-    // Scroll to bottom of MessagesList whenever the messages change
     useEffect(() => {
         if (messagesListRef.current) {
             messagesListRef.current.scrollTop = messagesListRef.current.scrollHeight;
         }
-    }, [memoizedMessages]);  // Trigger scroll every time messages change
+    }, [memoizedMessages]);  
 
     const generateGptSuggestion = async () => {
-        // Extract last 5 message contents only 
         const lastMessages = messages.slice(0, 5).map(msg => msg.message);
-        
-        // Combine into a single string with line breaks
         const context = lastMessages.join("\n");
-    
         console.log("Context being sent to GPT:", context);
     
         try {
-            const suggestion = await chatGptMessageSuggestion(context);
-            setSuggestedMessage(suggestion);  
+            // Call backend API 
+            const response = await fetch('https://ss-server-tan.vercel.app/api/chatSuggestion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: context }), // Send the context to the backend
+            });
+    
+            const data = await response.json();
+            if (data.suggestion) {
+                setSuggestedMessage(data.suggestion);  
+            } else {
+                console.error("No suggestion received:", data);
+            }
         } catch (err) {
             console.error("Error getting GPT suggestion:", err);
         }
-    };
-
+    }
+    
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text)
     }
