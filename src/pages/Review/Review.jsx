@@ -13,6 +13,9 @@ import { ReviewsPieChart } from '../../components/ReviewDataVis/ReviewsPieChart'
 import { ReviewAreaChart } from '../../components/ReviewDataVis/ReviewsAreaChart';
 import { ReviewLineBar } from '../../components/ReviewDataVis/ReviewLineBar';
 import { ReviewForm } from '../../components/ReviewForm/ReviewForm';
+import { useAlbumReviews } from '../../hooks/getAlbumReviews';
+import { useAuth } from '../../context/AuthContext';
+import { getUsername } from '../../hooks/getUsername';
 
 export const ReviewPage = () => {
     const location = useLocation(); 
@@ -28,6 +31,11 @@ export const ReviewPage = () => {
         artistID
     } = location.state || {};
 
+    const { user } = useAuth();
+    const currentUserEmail = user?.email; 
+
+    const [username, setUsername] = useState("");
+
     const [albumTracks, setAlbumTracks] = useState([]);
     const [loading, setLoading] = useState(true); 
     const [error, setError] = useState(null);
@@ -35,6 +43,84 @@ export const ReviewPage = () => {
     const [moreAlbums, setMoreAlbums] = useState([]);
 
     const navigate = useNavigate()
+
+    const { reviews } = useAlbumReviews(albumName, artistName);
+
+    const [averageRating, setAverageRating] = useState(0)
+
+    const generateAverageRating = () => {
+        if (reviews.length === 0) {
+            setAverageRating(0);  
+            return;
+        }
+    
+        let ratingsSum = 0;
+    
+        reviews.forEach((review) => {
+            ratingsSum += Number(review.rating);  
+        });
+    
+        const average = ratingsSum / reviews.length;
+        setAverageRating(average.toFixed(1));  
+    };
+    
+    useEffect(() => {
+        generateAverageRating();
+    }, [reviews]); 
+
+    const [ratingDistribution, setRatingDistribution] = useState({
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0
+    });
+    
+    useEffect(() => {
+        const countRatings = () => {
+            const distribution = {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                6: 0,
+                7: 0,
+                8: 0,
+                9: 0,
+                10: 0
+            };
+    
+            reviews.forEach((review) => {
+                const rating = review.rating;
+                if (rating >= 1 && rating <= 10) {
+                    distribution[rating]++;
+                }
+            });
+    
+            setRatingDistribution(distribution);
+        };
+    
+        countRatings();
+    }, [reviews]); // Re-run when reviews change
+    
+    // some sort of artwork consisting of words people have described the album ??
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+            if (currentUserEmail) {
+                const fetchedUsername = await getUsername(currentUserEmail);
+                setUsername(fetchedUsername || "User"); 
+            }
+        };
+    
+        fetchUsername();
+    }, [currentUserEmail]);
 
     useEffect(() => {
         if (accessToken && albumID) {
@@ -178,24 +264,50 @@ export const ReviewPage = () => {
                 <div className='Bottom-section'>
 
                     <h1 className='Header-titles'>Rate and review</h1>
-                    <ReviewForm />
+
+                    <ReviewForm 
+                        albumName={albumName} 
+                        artistName={artistName} 
+                        username={username} 
+                        tracks={albumTracks}
+                    />
                     
                     <h1 className='Header-titles'>Reviews for {albumName}</h1>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                    
+                    <div>
+                        {reviews.length > 0 ? (
+                            reviews
+                                .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)  // Sort by createdAt, newest first
+                                .map((review) => (
+                                    <div key={new Date(review.createdAt.seconds * 1000).toLocaleString()}>
+                                        <p><strong>{review.username}:</strong> {review.review}</p>
+                                        <p>Rating: {review.rating}</p>
+                                        <p>Favorite Song: {review.favSong}</p>
+                                        <p>{new Date(review.createdAt.seconds * 1000).toLocaleString()}</p>
+                                    </div>
+                                ))
+                        ) : (
+                            <p>No reviews have been made for this album, be the first!.</p>
+                        )}
+                    </div>
 
                     <h1 className='Header-titles'>Ratings for {albumName}</h1>
                     
                     <div className='Average-rating'>
-                        <h1>7.6</h1>
+                        <h1>{averageRating}</h1>
+                        
                     </div>
 
                     <div className='Ratings-container'>
+                        <h3>Rating Distribution:</h3>
+                        <ul>
+                            {Object.keys(ratingDistribution).map((rating) => (
+                                <li key={rating}>
+                                    {rating} Star: {ratingDistribution[rating]} vote{ratingDistribution[rating] !== 1 && 's'}
+                                </li>
+                            ))}
+                        </ul>
+                        
                         <ReviewsBarChart />
 
                         <div className='Area-Line-Graph-section'>
