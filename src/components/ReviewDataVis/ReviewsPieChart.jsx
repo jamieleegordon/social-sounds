@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 
-// Data representing the number of people who gave each rating (1-10)
-const data = [
-  { name: 'Rating 1', value: 10 },
-  { name: 'Rating 2', value: 30 },
-  { name: 'Rating 3', value: 25 },
-  { name: 'Rating 4', value: 15 },
-  { name: 'Rating 5', value: 40 },
-  { name: 'Rating 6', value: 60 },
-  { name: 'Rating 7', value: 80 },
-  { name: 'Rating 8', value: 45 },
-  { name: 'Rating 9', value: 20 },
-  { name: 'Rating 10', value: 50 },
-];
-
 // Function to render active slice with label, line, and percentage
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -68,15 +54,21 @@ const renderActiveShape = (props) => {
   );
 };
 
-export const ReviewsPieChart = () => {
+export const ReviewsPieChart = ({ ratingDistribution }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onPieEnter = (_, index) => {
     setActiveIndex(index);
   };
 
+  // Transform ratingDistribution into the format needed for PieChart
+  const data = Object.keys(ratingDistribution).map((rating) => ({
+    name: `Rating ${rating}`,
+    value: ratingDistribution[rating],
+  }));
+
   return (
-    <ResponsiveContainer className = "Review-pie-chart" height={300}>
+    <ResponsiveContainer className="Review-pie-chart" height={300}>
       <PieChart>
         <Pie
           activeIndex={activeIndex}

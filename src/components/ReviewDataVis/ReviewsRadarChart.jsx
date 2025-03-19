@@ -1,29 +1,32 @@
 import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
 
-// Data representing the number of people who gave each rating (1-10)
-const data = [
-  { subject: '1', A: 10, fullMark: 100 },
-  { subject: '2', A: 30, fullMark: 100 },
-  { subject: '3', A: 25, fullMark: 100 },
-  { subject: '4', A: 15, fullMark: 100 },
-  { subject: '5', A: 40, fullMark: 100 },
-  { subject: '6', A: 60, fullMark: 100 },
-  { subject: '7', A: 80, fullMark: 100 },
-  { subject: '8', A: 45, fullMark: 100 },
-  { subject: '9', A: 20, fullMark: 100 },
-  { subject: '10', A: 50, fullMark: 100 },
-];
+// Assuming the data comes in as props
+export const ReviewsRadarChart = ({ ratingDistribution }) => {
+  // Transform ratingDistribution into an array for the radar chart
+  const data = Object.keys(ratingDistribution).map((rating) => ({
+    subject: rating,  // Rating (1-10)
+    A: ratingDistribution[rating], // Number of people who gave that rating
+    fullMark: 100,  // Max value (can be adjusted if needed)
+  }));
 
-export const ReviewsRadarChart = () => {
+  // Get the max value in data to adjust the domain dynamically
+  const maxValue = Math.max(...data.map(item => item.A));
+
   return (
-    <ResponsiveContainer className = "Review-radar-chart" height={300}>
+    <ResponsiveContainer className="Review-radar-chart" height={300}>
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis angle={30} domain={[0, 100]} />
-        <Radar name="Number of Ratings" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+        
+        {/* Dynamically adjust the domain based on max value */}
+        <PolarRadiusAxis angle={30} domain={[0, maxValue]} />
+        
+        {/* Radar with improved fill opacity */}
+        <Radar name="Number of Ratings" dataKey="A" stroke="#ff7300" fill="#ff7300" fillOpacity={0.7} />
       </RadarChart>
     </ResponsiveContainer>
   );
 };
+
+

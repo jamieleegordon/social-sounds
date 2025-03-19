@@ -11,44 +11,56 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-// Example ratings data (number of people giving each rating)
-const ratingData = [
-  { rating: '1', people: 10 },
-  { rating: '2', people: 30 },
-  { rating: '3', people: 25 },
-  { rating: '4', people: 15 },
-  { rating: '5', people: 20 },
-  { rating: '6', people: 18 },
-  { rating: '7', people: 22 },
-  { rating: '8', people: 30 },
-  { rating: '9', people: 35 },
-  { rating: '10', people: 40 },
-];
+// Tooltip content that filters out 0 votes
+const renderTooltipContent = ({ payload, label }) => {
+  if (!payload || payload.length === 0) return null;
 
-// Optional: Example trend data - could represent a cumulative average, etc.
-const withTrend = ratingData.map((item, index, arr) => ({
-  ...item,
-  trend: index === 0 ? item.people : arr.slice(0, index + 1).reduce((acc, i) => acc + i.people, 0) / (index + 1),
-}));
+  const nonZeroPayload = payload.filter((entry) => entry.value > 0);
+  if (nonZeroPayload.length === 0) return null;
 
-export const ReviewLineBar = () => {
   return (
-    <ResponsiveContainer className = "Review-line-bar" height={420}>
+    <div className="custom-tooltip" style={{ background: '#fff', border: '1px solid #ccc', padding: '8px' }}>
+      <p>{`Rating: ${label}`}</p>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+        {nonZeroPayload.map((entry, index) => (
+          <li key={`item-${index}`} style={{ color: entry.color }}>
+            {`${entry.name}: ${entry.value} votes`}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// Transform ratingDistribution into an array for the chart
+const transformedData = (ratingDistribution) => {
+  return Object.keys(ratingDistribution).map((rating) => ({
+    rating,
+    people: ratingDistribution[rating],
+  }));
+};
+
+export const ReviewLineBar = ({ ratingDistribution }) => {
+  // Transform ratingDistribution data into chart-friendly format
+  const data = transformedData(ratingDistribution);
+
+  return (
+    <ResponsiveContainer className="Review-line-bar" height={420}>
       <ComposedChart
-        data={withTrend}
+        data={data}
         margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="rating" />
-        <YAxis />
-        <Tooltip />
+        <YAxis domain={['auto', 'auto']} /> {/* Ensures Y-Axis auto-scales to the data */}
+        <Tooltip content={renderTooltipContent} />
         <Legend />
 
-        {/* Bar chart to show number of people per rating */}
+        {/* Bar chart to show the number of people per rating */}
         <Bar dataKey="people" barSize={30} fill="#8884d8" name="Number of People" />
 
-        {/* Optional Line to show a trend over ratings */}
-        <Line type="monotone" dataKey="trend" stroke="#ff7300" dot={{ r: 4 }} name="Average Trend" />
+        {/* Optional Line to show a trend (cumulative average of people) */}
+        <Line type="monotone" dataKey="people" stroke="#ff7300" dot={{ r: 4 }} name="Average Trend" />
       </ComposedChart>
     </ResponsiveContainer>
   );

@@ -49,6 +49,7 @@
 #Album-image {
     width: 300px;
     height: auto;
+    border-radius: 5px;
 }
 
 .Album-info {
@@ -139,6 +140,103 @@
 
 .Header-titles h1{
     font-size: 30px;
+}
+
+.UserReviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    max-height: 700px;
+}
+
+.UserReviews::-webkit-scrollbar {
+    height: 8px;
+}
+
+.UserReviews::-webkit-scrollbar-track {
+    background: #222; 
+}
+
+.UserReviews::-webkit-scrollbar-thumb {
+    background: #555; 
+    border-radius: 4px;
+}
+
+.Review-card {
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: row;
+    background-color: #222;
+    width: 600px;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.Review-card div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Review-card-rating-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+    width: 20%; 
+    text-align: right; 
+}
+
+.Review-card-rating-container h1 {
+    border: 5px solid var(--item-colour);
+    border-radius: 50%;
+    max-width: fit-content;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.Review-card-image-container img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.Review-card-image-container {
+    width: 20%;
+}
+
+.Review-card-review-info-container {
+    width: 60%;
+}
+
+.Stats-container div {
+    margin-bottom: 8px;
+    background-color: #222;
+    padding: 5px;
+    border-radius: 10px;
+    max-width: 100%;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.Stats-container strong {
+    width: 10%;
+}
+
+.Stats-container button {
+    margin-left: auto; 
+    border-radius: 15px;
+    border-style: none;
+    color: white;
+    background-color: #0213a7;
+    padding: 5px 10px;
+}
+
+.genre-btn {
+    visibility: hidden;
 }
 
 .Bottom-section {
@@ -286,6 +384,74 @@
 
     .Review-area-chart, .Review-line-bar, .Review-radar-chart, .Review-pie-chart{
         width: 100%;
+    }
+
+    .UserReviews {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+        max-height: 700px;
+    }
+
+    .Review-card div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .Review-card-rating-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+        width: 20%; 
+        text-align: right; 
+    }
+    
+    .Review-card-rating-container h1 {
+        border: 5px solid var(--item-colour);
+        border-radius: 50%;
+        max-width: fit-content;
+        padding: 10px;
+        font-size: 15px;
+    }
+    
+    .Review-card-image-container img {
+        width: 10px;
+        height: auto;
+        border-radius: 5px;
+    }
+    
+    .Review-card-image-container {
+        width: 20%;
+    }
+    
+    .Review-card-review-info-container {
+        width: 60%;
+    }
+
+    .Stats-container strong {
+        width: 15%;
+        font-size: 12px;
+    }
+    
+    .Stats-container button {
+        margin-left: auto; 
+        border-radius: 15px;
+        border-style: none;
+        color: white;
+        background-color: #0213a7;
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .Stats-container{
+        font-size: 12px;
+    }
+
+    .Stats-container p {
+        font-size: 12px;
     }
 }
 
