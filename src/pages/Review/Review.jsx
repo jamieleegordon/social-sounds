@@ -321,6 +321,7 @@ export const ReviewPage = () => {
                         artistName={artistName} 
                         username={username} 
                         tracks={albumTracks}
+                        albumAnalysis = {albumAnalysis}
                     />
                     
                     <h1 className='Header-titles'>Reviews for {albumName}</h1>

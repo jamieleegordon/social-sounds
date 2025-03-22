@@ -79,6 +79,7 @@
 }
 
 .Logout-button {
+    margin-top: 50px;
     padding: 10px 30px 10px;
     border-radius: 15px;
     border-style: none;
@@ -291,6 +292,15 @@
     padding: 5px; 
     font-size: 12px;
     color: #ccc;
+}
+
+.Most-listened-to-artists-section h3,
+.Most-listened-to-genres-section h3 {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 767px) {

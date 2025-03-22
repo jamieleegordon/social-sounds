@@ -30,6 +30,9 @@ export const NavBar = () => {
     const gotoAIplaylistPage = () => {
         navigate('/ai-playlist')
     }
+    const gotoListeningStatsPage = () => {
+        navigate('/listeningStats')
+    }
 
     return (
         <>
@@ -71,7 +74,7 @@ export const NavBar = () => {
                         </li>  
                         <li>
                             <IconButton>
-                                <AutoGraph className="Nav-bar-icon" />
+                                <AutoGraph className="Nav-bar-icon" onClick = {gotoListeningStatsPage}/>
                             </IconButton>
                         </li> 
                         <li>
@@ -135,7 +138,7 @@ export const NavBar = () => {
                             </li>  
                             <li>
                                 <IconButton>
-                                    <AutoGraph className="Nav-bar-icon" />
+                                    <AutoGraph className="Nav-bar-icon" onClick = {gotoListeningStatsPage}/>
                                 </IconButton>
                             </li> 
                             <li>

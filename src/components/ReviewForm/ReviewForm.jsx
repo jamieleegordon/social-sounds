@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { addAlbumReview } from "../../hooks/addAlbumReview";
+import { checkAlbumAlreadyAnalysed } from "../../hooks/checkAlbumAlreadyAnalysed";
+import { addAlbumAnalysis } from "../../hooks/addAlbumAnalysis";
 
-export const ReviewForm = ({ albumName, artistName, username, tracks }) => {
-    // Declare state variables for form inputs
+export const ReviewForm = ({ albumName, artistName, username, tracks, albumAnalysis }) => {
+    
     const [rating, setRating] = useState(null);
     const [review, setReview] = useState("");
     const [favSong, setFavSong] = useState("");
 
-    // Handles adding a review
     const addReview = async (event) => {
-        event.preventDefault(); // Prevent form submission from reloading the page
+        event.preventDefault(); 
 
         if (rating === null || review === "" || favSong === "") {
             alert("Please fill in all fields before submitting.");
@@ -17,6 +18,15 @@ export const ReviewForm = ({ albumName, artistName, username, tracks }) => {
         }
 
         try {
+            const albumAlreadyAnalysed = await checkAlbumAlreadyAnalysed(albumName, artistName) 
+
+            if (albumAlreadyAnalysed) {
+                console.log("already analysed")
+            } else {
+                console.log("not yet analysed")
+                await addAlbumAnalysis(albumName, artistName, albumAnalysis)
+            }
+
             await addAlbumReview(rating, review, favSong, username, artistName, albumName);
             setRating(null);
             setReview("");

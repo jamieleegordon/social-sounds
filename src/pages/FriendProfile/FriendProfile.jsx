@@ -6,6 +6,8 @@ import { checkAlreadyHasFavAlbums } from "../../hooks/addFavouriteAlbums";
 import { getAccessToken } from "../../api/SearchArtist";
 import { searchAlbums } from "../../api/SearchAlbum";
 import { getFavAlbums } from "../../hooks/getFavAlbums";
+import { getFavArtist } from "../../hooks/getFavArtist";
+import { getFavGenre } from "../../hooks/getFavGenre";
 
 export const FriendProfile = () => {
     const location = useLocation();
@@ -16,6 +18,9 @@ export const FriendProfile = () => {
 
     const [alreadyHasFavAlbums, setAlreadyHasFavAlbums] = useState(false)
     const [accessToken, setAccessToken] = useState("");
+
+    const [mostListenedToGenre, setMostListenedToGenre] = useState("")
+    const [mostListenedToArtist, setMostListenedToArtist] = useState("")
     
     const [favAlbums, setFavAlbums] = useState([])
 
@@ -84,7 +89,26 @@ export const FriendProfile = () => {
         checkFavAlbums();
     }, [friendUsername, accessToken]);
 
-   
+    useEffect(() => {
+            const fetchFavGenre = async () => {
+                const favGenre = await getFavGenre(friendUsername)
+                setMostListenedToGenre(favGenre)
+                console.log(favGenre)
+            }
+        
+            fetchFavGenre()
+        }, [friendUsername])
+        
+        useEffect(() => {
+            const fetchFavArtist = async () => {
+                const favArtist = await getFavArtist(friendUsername)
+                setMostListenedToArtist(favArtist)
+                console.log(favArtist)
+            }
+        
+            fetchFavArtist()
+        }, [friendUsername]) 
+
     return (
         <>
             <NavBar />
@@ -148,11 +172,13 @@ export const FriendProfile = () => {
                 </div>
                 
                 <div className="Most-listened-to-artists-section">
-                    <h1 className="Section-titles">Most listened to artists</h1>
+                    <h1 className="Section-titles">Most listened to artist</h1>
+                    <h3>{mostListenedToArtist}</h3>
                 </div>
 
                 <div className="Most-listened-to-genres-section">
-                    <h1 className="Section-titles">Most listened to genres</h1>
+                    <h1 className="Section-titles">Most listened to genre</h1>
+                    <h3>{mostListenedToGenre}</h3>
                 </div>
 
             </div>

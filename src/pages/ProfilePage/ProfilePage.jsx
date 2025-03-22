@@ -9,6 +9,8 @@ import { getAccessToken } from "../../api/SearchArtist";
 import { searchAlbums } from "../../api/SearchAlbum";
 import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { getFavAlbums } from "../../hooks/getFavAlbums";
+import { getFavGenre } from "../../hooks/getFavGenre";
+import { getFavArtist } from "../../hooks/getFavArtist";
 
 export const ProfilePage = () => {
 
@@ -26,6 +28,9 @@ export const ProfilePage = () => {
     const [selectedAlbumIds, setSelectedAlbumsIds] = useState([])
     const [selectedAlbumNames, setSelectedAlbumNames] = useState([])
     const [selectedThreeAlbums, setSelectedThreeAlbums] = useState(false)
+
+    const [mostListenedToGenre, setMostListenedToGenre] = useState("")
+    const [mostListenedToArtist, setMostListenedToArtist] = useState("")
 
     const [favAlbums, setFavAlbums] = useState([])
 
@@ -188,6 +193,26 @@ export const ProfilePage = () => {
             console.error(err)
         }
     }
+
+    useEffect(() => {
+        const fetchFavGenre = async () => {
+            const favGenre = await getFavGenre(username)
+            setMostListenedToGenre(favGenre)
+            console.log(favGenre)
+        }
+    
+        fetchFavGenre()
+    }, [username])
+    
+    useEffect(() => {
+        const fetchFavArtist = async () => {
+            const favArtist = await getFavArtist(username)
+            setMostListenedToArtist(favArtist)
+            console.log(favArtist)
+        }
+    
+        fetchFavArtist()
+    }, [username])  
     
     return (
         <>
@@ -305,11 +330,13 @@ export const ProfilePage = () => {
                 </div>
                 
                 <div className="Most-listened-to-artists-section">
-                    <h1 className="Section-titles">Most listened to artists</h1>
+                    <h1 className="Section-titles">Most listened to artist</h1>
+                    <h3>{mostListenedToArtist}</h3>
                 </div>
 
                 <div className="Most-listened-to-genres-section">
-                    <h1 className="Section-titles">Most listened to genres</h1>
+                    <h1 className="Section-titles">Most listened to genre</h1>
+                    <h3>{mostListenedToGenre}</h3>
                 </div>
 
                 <button 

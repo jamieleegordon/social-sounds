@@ -1,0 +1,57 @@
+@import '../../../src/globalStyles.css';
+
+.ListeningStatsPage {
+    height: 100vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    color: white;
+}
+
+.ListeningStatsPage-header {
+    margin-top: 20px;
+}
+
+.ListeningStatsPage-stats-section {
+    margin-top: 30px;
+}
+
+.ListeningStatsPage-stats-section h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ListeningStatsPage-stats-section .Stats-block {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.ListeningStatsPage-stats-section .Stats-block-top {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    width: 100%;
+    justify-content: center; 
+    text-align: center; 
+}
+
+.Explanation {
+    width: 35%;
+}
+
+.ListeningStatsPage h5 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 18px;
+}
