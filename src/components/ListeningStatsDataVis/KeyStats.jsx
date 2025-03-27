@@ -10,28 +10,28 @@ import {
   Legend,
 } from "recharts";
 
-import { getEnergyStats } from "../../hooks/getEnergyStats";
+import { getKeyStats } from "../../hooks/getKeyStats";
 
-export const EnergyStats = ({ username }) => {
-  const [energyStats, setEnergyStats] = useState([]);
+export const KeyStats = ({ username }) => {
+  const [keyStats, setKeyStats] = useState([]);
 
   useEffect(() => {
-    const fetchEnergyStats = async () => {
-      const stats = await getEnergyStats(username);
-      setEnergyStats(stats);
+    const fetchKeyStats = async () => {
+      const stats = await getKeyStats(username);
+      setKeyStats(stats);
       console.log(stats);
     };
 
-    fetchEnergyStats();
+    fetchKeyStats();
   }, [username]);
 
   const CustomTooltip = ({ payload }) => {
     if (payload && payload.length) {
-      const { albumName, energy } = payload[0].payload; 
+      const { albumName, key } = payload[0].payload; 
       return (
         <div className="custom-tooltip">
           <p>{`Album: ${albumName}`}</p>
-          <p>{`Energy: ${energy.toFixed(2)}`}</p> 
+          <p>{`Key: ${key.toFixed(2)}`}</p> 
         </div>
       );
     }
@@ -41,18 +41,18 @@ export const EnergyStats = ({ username }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        data={energyStats}
+        data={keyStats}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="energy" hide={true} />
+        <XAxis dataKey="key" hide={true} />
         <YAxis />
         <Tooltip content={<CustomTooltip />} /> 
         <Legend />
         <Line
           type="monotone"
-          dataKey="energy"
-          stroke="#FF5733"
+          dataKey="key"
+          stroke="yellow"
           strokeWidth={2}
           dot={false}
         />

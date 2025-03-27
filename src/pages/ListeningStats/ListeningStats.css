@@ -55,3 +55,29 @@
     align-items: center;
     margin-top: 18px;
 }
+
+.Analysis-explanation {
+    color: #0d6efd;
+}
+
+@media (max-width: 767px) {
+    .ListeningStatsPage {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .ListeningStatsPage-stats-section .Stats-block {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin-top: 30px;
+    }
+    .Explanation {
+        width: 100%;
+    }
+    .ListeningStatsPage h5 {
+        font-size: 15px;
+    }
+    .ListeningStatsPage-stats-section .Stats-block-top h2, h3 {
+        font-size: 18px;
+    }
+}

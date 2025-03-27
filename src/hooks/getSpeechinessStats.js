@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../config/firebase";
 
-export const getInstrumentalnessStats = async (username) => {
+export const getSpeechinessStats = async (username) => {
     const reviewsCollectionRef = collection(db, "reviews");
     const albumStatsCollectionRef = collection(db, "albumStats");
 
@@ -21,7 +21,7 @@ export const getInstrumentalnessStats = async (username) => {
             albumNamesWithArtists.add(albumKey);
         });
 
-        const instrumentalnessStats = [];
+        const speechinessStats = [];
 
         for (const albumKey of albumNamesWithArtists) {
             const [albumName, artistName] = albumKey.split('-');
@@ -33,29 +33,30 @@ export const getInstrumentalnessStats = async (username) => {
             const albumSnapshot = await getDocs(albumQuery);
 
             albumSnapshot.forEach(doc => {
-                const { instrumentalness } = doc.data();
-                instrumentalnessStats.push({ albumName, instrumentalness });
-            });
+                const { speechiness } = doc.data();
+                speechinessStats.push({ albumName, speechiness });
+            })
         }
 
-        if (instrumentalnessStats.length === 0) {
-            console.log("No instrumentalness stats found for the reviewed albums.");
+        if (speechinessStats.length === 0) {
+            console.log("No mode speechiness found for the reviewed albums.");
             return null;
         }
 
-        return instrumentalnessStats;
+        return speechinessStats;
     } catch (error) {
-        console.error("Error getting energy stats:", error);
+        console.error("Error getting speechiness stats:", error);
         return null;
     }
 };
 
-
-export const getAverageInstrumentalness = async (username) => {
-    const instrumentalnessStats = await getInstrumentalnessStats(username);
+export const getAverageSpeechiness = async (username) => {
+    const speechinessStats = await getSpeechinessStats(username);
     
-    if (!instrumentalnessStats || instrumentalnessStats.length === 0) return 0; 
+    if (!speechinessStats || speechinessStats.length === 0) return 0; 
 
-    const totalInstrumentalness = instrumentalnessStats.reduce((sum, stat) => sum + stat.instrumentalness, 0);
-    return (totalInstrumentalness / instrumentalnessStats.length).toFixed(2);
-};
+    const totalSpeechiness = speechinessStats.reduce((sum, stat) => sum + stat.speechiness, 0);
+    return (totalSpeechiness / speechinessStats.length).toFixed(2);
+}
+
+

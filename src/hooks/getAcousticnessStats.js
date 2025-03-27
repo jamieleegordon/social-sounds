@@ -54,3 +54,13 @@ export const getAcousticnessStats = async (username) => {
         return null;
     }
 };
+
+
+export const getAverageAcousticness = async (username) => {
+    const acousticnessStats = await getAcousticnessStats(username);
+    
+    if (!acousticnessStats || acousticnessStats.length === 0) return 0; 
+
+    const totalAcousticness = acousticnessStats.reduce((sum, stat) => sum + stat.acousticness, 0);
+    return (totalAcousticness / acousticnessStats.length).toFixed(2);
+};

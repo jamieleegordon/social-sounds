@@ -55,5 +55,11 @@ export const getEnergyStats = async (username) => {
     }
 };
 
+export const getAverageEnergy = async (username) => {
+    const energyStats = await getEnergyStats(username);
+    
+    if (!energyStats || energyStats.length === 0) return 0; 
 
-// GRAB AVERAGE WOULD BE ANOTHER FUNCTION HERE
+    const totalEnergy = energyStats.reduce((sum, stat) => sum + stat.energy, 0);
+    return (totalEnergy / energyStats.length).toFixed(2);
+};

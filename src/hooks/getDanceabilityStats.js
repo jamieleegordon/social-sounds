@@ -54,3 +54,12 @@ export const getDanceabilityStats = async (username) => {
         return null;
     }
 };
+
+export const getAverageDanceability = async (username) => {
+    const danceabilityStats = await getDanceabilityStats(username);
+    
+    if (!danceabilityStats || danceabilityStats.length === 0) return 0; 
+
+    const totaldDanceability = danceabilityStats.reduce((sum, stat) => sum + stat.danceability, 0);
+    return (totaldDanceability / danceabilityStats.length).toFixed(2);
+};

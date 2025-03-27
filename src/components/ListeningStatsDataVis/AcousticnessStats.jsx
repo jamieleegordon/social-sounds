@@ -40,7 +40,7 @@ const AcousticnessStats = ({ username }) => {
       <BarChart
         width={500}
         height={300}
-        data={chartData} // Use the actual chart data
+        data={chartData}
         margin={{
           top: 5,
           right: 30,
@@ -54,7 +54,7 @@ const AcousticnessStats = ({ username }) => {
         <Tooltip content={<CustomTooltip />} /> 
         
         <Legend 
-          formatter={() => "Acousticness"} // Set the legend text to "Acousticness"
+          formatter={() => "Acousticness"} 
           iconType="square" 
           wrapperStyle={{ color: '#0d6efd', fontSize: '14px' }} 
         />
@@ -62,12 +62,11 @@ const AcousticnessStats = ({ username }) => {
         <CartesianGrid strokeDasharray="3 3" />
         
         <Bar
-          dataKey="uv" // The 'dataKey' is still "uv" but the legend will show "Acousticness"
-          fill="#0d6efd"  // Color of the bars and legend
+          dataKey="uv" 
+          fill="#0d6efd"  
           background={{ fill: '#eee' }}
           isAnimationActive={false}
-          activeDot={false}  // Disable the dot hover effect
-          // Disable hover interaction and active state
+          activeDot={false}  
           onMouseEnter={() => {}}
           onMouseLeave={() => {}}
         />

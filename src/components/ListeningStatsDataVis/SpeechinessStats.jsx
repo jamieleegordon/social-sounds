@@ -9,29 +9,28 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { getSpeechinessStats } from "../../hooks/getSpeechinessStats";
 
-import { getEnergyStats } from "../../hooks/getEnergyStats";
-
-export const EnergyStats = ({ username }) => {
-  const [energyStats, setEnergyStats] = useState([]);
+export const SpeechinessStats = ({ username }) => {
+  const [speechinessStats, setSpeechinessStats] = useState([]);
 
   useEffect(() => {
-    const fetchEnergyStats = async () => {
-      const stats = await getEnergyStats(username);
-      setEnergyStats(stats);
+    const fetchSpeechinessStats = async () => {
+      const stats = await getSpeechinessStats(username);
+      setSpeechinessStats(stats);
       console.log(stats);
     };
 
-    fetchEnergyStats();
+    fetchSpeechinessStats();
   }, [username]);
 
   const CustomTooltip = ({ payload }) => {
     if (payload && payload.length) {
-      const { albumName, energy } = payload[0].payload; 
+      const { albumName, speechiness } = payload[0].payload; 
       return (
         <div className="custom-tooltip">
           <p>{`Album: ${albumName}`}</p>
-          <p>{`Energy: ${energy.toFixed(2)}`}</p> 
+          <p>{`Speechiness: ${speechiness.toFixed(2)}`}</p> 
         </div>
       );
     }
@@ -41,18 +40,18 @@ export const EnergyStats = ({ username }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        data={energyStats}
+        data={speechinessStats}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="energy" hide={true} />
+        <XAxis dataKey="speechiness" hide={true} />
         <YAxis />
         <Tooltip content={<CustomTooltip />} /> 
         <Legend />
         <Line
           type="monotone"
-          dataKey="energy"
-          stroke="#FF5733"
+          dataKey="speechiness"
+          stroke="#0d6efd"
           strokeWidth={2}
           dot={false}
         />
