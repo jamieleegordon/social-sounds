@@ -43,6 +43,10 @@ export const getFavGenre = async (username) => {
 
         const favoriteGenre = Object.entries(genreCount).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
 
+
+        // UPDATE FAV GENRE
+
+
         return favoriteGenre;
     } catch (error) {
         console.error("Error getting favorite genre:", error);

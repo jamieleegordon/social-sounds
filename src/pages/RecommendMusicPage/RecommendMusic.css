@@ -1,0 +1,36 @@
+@import '../../../src/globalStyles.css';
+
+.RecommendMusicPage {
+    height: 100vh;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-colour);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    color: white;
+}
+
+.RecommendMusicPage .Album-card {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.RecommendMusicPage .Album-card-bottom {
+    padding: 10px;
+}
+
+.RecommendMusicPage .Recommendation-title {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .RecommendMusicPage {
+        
+        padding-left: 10px;
+        padding-right: 10px;
+        
+    }
+}

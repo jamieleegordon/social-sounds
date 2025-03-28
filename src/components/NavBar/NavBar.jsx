@@ -33,6 +33,9 @@ export const NavBar = () => {
     const gotoListeningStatsPage = () => {
         navigate('/listeningStats')
     }
+    const gotoRecommendMusicPage = () => {
+        navigate('/recommendMusic')
+    }
 
     return (
         <>
@@ -69,7 +72,7 @@ export const NavBar = () => {
 
                         <li>
                             <IconButton>
-                                <LibraryMusic className="Nav-bar-icon" />
+                                <LibraryMusic className="Nav-bar-icon" onClick = {gotoRecommendMusicPage}/>
                             </IconButton>
                         </li>  
                         <li>
@@ -133,7 +136,7 @@ export const NavBar = () => {
                             </li>
                             <li>
                                 <IconButton>
-                                    <LibraryMusic className="Nav-bar-icon" />
+                                    <LibraryMusic className="Nav-bar-icon" onClick = {gotoRecommendMusicPage}/>
                                 </IconButton>
                             </li>  
                             <li>

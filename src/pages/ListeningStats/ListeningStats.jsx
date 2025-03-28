@@ -33,6 +33,7 @@ import { TimeSignatureStats } from '../../components/ListeningStatsDataVis/TimeS
 import { getAverageTimeSignature } from '../../hooks/getTimeSignature'
 import { ValenceStats } from '../../components/ListeningStatsDataVis/ValenceStats'
 import { getAverageValence } from '../../hooks/getValenceStats'
+import { checkFiveReviews } from '../../hooks/checkFiveReviews'
 
 export const ListeningStatsPage = () => {
 
@@ -57,6 +58,8 @@ export const ListeningStatsPage = () => {
     const [averagePitch, setAveragePitch] = useState(null)
     const [averageSpeechiness, setAverageSpeechiness] = useState(null)
     const [averageTimeSignature, setAverageTimeSignature] = useState(null)
+
+    const [summary, setSummary] = useState("")
 
     useEffect(() => {
         const fetchAverages = async () => {
@@ -101,8 +104,49 @@ export const ListeningStatsPage = () => {
 
           const avgTimeSignature = await getAverageTimeSignature(username)
           setAverageTimeSignature(avgTimeSignature)
+
+          const averages = `Energy: ${avgEnergy}
+            Danceability: ${avgDanceability}
+            Tempo: ${avgTempo}
+            Valence: ${avgValence}
+            Acousticness: ${avgAcousticness}
+            Instrumentalness: ${avgInstrumentalness}
+            Key: ${avgKey}
+            Key changes: ${avgKeyChange}
+            Liveness: ${avgLiveness}
+            Loudness: ${avgLoudness}
+            Mode: ${avgMode}
+            Pitch: ${avgPitch}
+            Speechiness: ${avgSpeechiness}
+            Time Signature: ${avgTimeSignature}`;
+
+            const hasFiveReviews = await checkFiveReviews(username)
+            if (hasFiveReviews) {
+                try {
+                    const response = await fetch('https://ss-server-tan.vercel.app/api/statsSummary', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ text: averages }), 
+                    });
+            
+                    const data = await response.json();
+                    if (data.summary) {
+                        setSummary(data.summary);  
+                        console.log(data.summary)
+                    } else {
+                        console.error("No summary received:", data);
+                    }
+                } catch (err) {
+                    console.error("Error getting GPT summary:", err);
+                }
+
+            } else {
+                console.log("has less than 5 reviews")
+            }
         }
-    
+        
         fetchAverages();
       }, [username]);
 
@@ -145,6 +189,12 @@ export const ListeningStatsPage = () => {
                 <h1 className='ListeningStatsPage-header'>Listening Stats</h1>
                 <p>Here, you can find your personalised listening stats, breaking down all your habits! 🎸</p>
             
+                {summary.length === 0 ? (
+                    <h5>Loading summary. Please wait (Summary won't load unless you have 5 or more reviews) ...</h5>
+                ) : (
+                    <h5>{summary}</h5>
+                )}
+
             <div className='ListeningStatsPage-stats-section'>
                 <div className='Stats-block-top'>
                     <div>

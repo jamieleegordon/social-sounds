@@ -14,6 +14,7 @@ import { MessagingPage } from './pages/MessagingPage/MessagingPage';
 import { AIplaylist } from './pages/AIplaylist/AIplaylist';
 import { FriendProfile } from './pages/FriendProfile/FriendProfile';
 import { ListeningStatsPage } from './pages/ListeningStats/ListeningStats';
+import { RecommendMusicPage } from './pages/RecommendMusicPage/RecommendMusic';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path = "/ai-playlist" element = {<AIplaylist />}/>
           <Route path = "/friendProfile/:friend" element = {<FriendProfile />}/>
           <Route path = "/listeningStats" element = {<ListeningStatsPage />}/>
+          <Route path = "/recommendMusic" element = {<RecommendMusicPage />}/>
         </Routes>
       </Router>
     </div>
